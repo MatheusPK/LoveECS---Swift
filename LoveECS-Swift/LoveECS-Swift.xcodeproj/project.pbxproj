@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09470D3D2996769C00BE3A54 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09470D3C2996769C00BE3A54 /* GameLayer.swift */; };
+		095326EC2994168C00ECA5D3 /* FruitSpawnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */; };
+		095326EE2994171D00ECA5D3 /* FruitSpawnerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */; };
+		095326F02994260100ECA5D3 /* ColliderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326EF2994260100ECA5D3 /* ColliderComponent.swift */; };
+		0953271C29953AAE00ECA5D3 /* SnakeColliderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0953271B29953AAE00ECA5D3 /* SnakeColliderComponent.swift */; };
+		09532720299639EB00ECA5D3 /* TextureComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0953271F299639EB00ECA5D3 /* TextureComponent.swift */; };
+		0957B6AE2991A3D600E80244 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6AD2991A3D600E80244 /* AppDelegate.swift */; };
+		0957B6B02991A3D600E80244 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6AF2991A3D600E80244 /* SceneDelegate.swift */; };
+		0957B6B72991A3D800E80244 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0957B6B62991A3D800E80244 /* Assets.xcassets */; };
+		0957B6BA2991A3D800E80244 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0957B6B82991A3D800E80244 /* LaunchScreen.storyboard */; };
+		0957B6C42991A47400E80244 /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6C32991A47400E80244 /* SceneFactory.swift */; };
+		0957B6C82991A56500E80244 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6C72991A56500E80244 /* ViewCode.swift */; };
+		0957B6CD2991A72200E80244 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6CC2991A72200E80244 /* BaseViewController.swift */; };
+		0957B6D02991A76800E80244 /* SnakeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6CF2991A76800E80244 /* SnakeConfigurator.swift */; };
+		0957B6D22991A7A000E80244 /* SnakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6D12991A7A000E80244 /* SnakeViewController.swift */; };
+		0957B6D42991A7B800E80244 /* SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6D32991A7B800E80244 /* SnakeView.swift */; };
+		0957B6D92991A9D500E80244 /* BaseSKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6D82991A9D500E80244 /* BaseSKView.swift */; };
+		0957B6DB2991AC5000E80244 /* FaceTrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6DA2991AC5000E80244 /* FaceTrackingView.swift */; };
+		0957B6DE2991AE4100E80244 /* SnakeGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6DD2991AE4100E80244 /* SnakeGameScene.swift */; };
+		0957B6E22991AF7D00E80244 /* LoveWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6E12991AF7D00E80244 /* LoveWorld.swift */; };
+		0957B6E42991AF8600E80244 /* LoveEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6E32991AF8600E80244 /* LoveEntity.swift */; };
+		0957B6E62991AF8E00E80244 /* LoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6E52991AF8E00E80244 /* LoveComponent.swift */; };
+		0957B6E82991AF9600E80244 /* LoveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6E72991AF9600E80244 /* LoveSystem.swift */; };
+		0957B6EA2991AFA000E80244 /* LoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6E92991AFA000E80244 /* LoveEvent.swift */; };
+		0957B6EC2991AFAC00E80244 /* LoveUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6EB2991AFAC00E80244 /* LoveUtils.swift */; };
+		0957B6EF2991B03E00E80244 /* LoveScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6EE2991B03E00E80244 /* LoveScene.swift */; };
+		0957B6F22991B18600E80244 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6F12991B18600E80244 /* SpriteComponent.swift */; };
+		0957B6F92992E44E00E80244 /* SnakeBodyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6F82992E44E00E80244 /* SnakeBodyComponent.swift */; };
+		0957B6FD2992FF6800E80244 /* SnakeMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6FC2992FF6800E80244 /* SnakeMovementComponent.swift */; };
+		0957B6FF2992FF9500E80244 /* SnakeMovementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6FE2992FF9500E80244 /* SnakeMovementSystem.swift */; };
+		0957B70129930F0C00E80244 /* FaceTrackingMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B70029930F0C00E80244 /* FaceTrackingMovementComponent.swift */; };
+		0957B7052993105B00E80244 /* FaceTrackingMovementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B7042993105B00E80244 /* FaceTrackingMovementSystem.swift */; };
+		0957B70829931D8800E80244 /* SnakeDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B70729931D8800E80244 /* SnakeDependencies.swift */; };
+		0957B70A29931DBF00E80244 /* SnakeEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B70929931DBF00E80244 /* SnakeEvents.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09470D3C2996769C00BE3A54 /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
+		095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerComponent.swift; sourceTree = "<group>"; };
+		095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerSystem.swift; sourceTree = "<group>"; };
+		095326EF2994260100ECA5D3 /* ColliderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColliderComponent.swift; sourceTree = "<group>"; };
+		0953271B29953AAE00ECA5D3 /* SnakeColliderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeColliderComponent.swift; sourceTree = "<group>"; };
+		0953271F299639EB00ECA5D3 /* TextureComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureComponent.swift; sourceTree = "<group>"; };
+		0957B6AA2991A3D600E80244 /* LoveECS-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LoveECS-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0957B6AD2991A3D600E80244 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0957B6AF2991A3D600E80244 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0957B6B62991A3D800E80244 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0957B6B92991A3D800E80244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0957B6BB2991A3D800E80244 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0957B6C32991A47400E80244 /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
+		0957B6C72991A56500E80244 /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
+		0957B6CC2991A72200E80244 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0957B6CF2991A76800E80244 /* SnakeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeConfigurator.swift; sourceTree = "<group>"; };
+		0957B6D12991A7A000E80244 /* SnakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeViewController.swift; sourceTree = "<group>"; };
+		0957B6D32991A7B800E80244 /* SnakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeView.swift; sourceTree = "<group>"; };
+		0957B6D82991A9D500E80244 /* BaseSKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSKView.swift; sourceTree = "<group>"; };
+		0957B6DA2991AC5000E80244 /* FaceTrackingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingView.swift; sourceTree = "<group>"; };
+		0957B6DD2991AE4100E80244 /* SnakeGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameScene.swift; sourceTree = "<group>"; };
+		0957B6E12991AF7D00E80244 /* LoveWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveWorld.swift; sourceTree = "<group>"; };
+		0957B6E32991AF8600E80244 /* LoveEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveEntity.swift; sourceTree = "<group>"; };
+		0957B6E52991AF8E00E80244 /* LoveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveComponent.swift; sourceTree = "<group>"; };
+		0957B6E72991AF9600E80244 /* LoveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveSystem.swift; sourceTree = "<group>"; };
+		0957B6E92991AFA000E80244 /* LoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveEvent.swift; sourceTree = "<group>"; };
+		0957B6EB2991AFAC00E80244 /* LoveUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveUtils.swift; sourceTree = "<group>"; };
+		0957B6EE2991B03E00E80244 /* LoveScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveScene.swift; sourceTree = "<group>"; };
+		0957B6F12991B18600E80244 /* SpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
+		0957B6F82992E44E00E80244 /* SnakeBodyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeBodyComponent.swift; sourceTree = "<group>"; };
+		0957B6FC2992FF6800E80244 /* SnakeMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeMovementComponent.swift; sourceTree = "<group>"; };
+		0957B6FE2992FF9500E80244 /* SnakeMovementSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeMovementSystem.swift; sourceTree = "<group>"; };
+		0957B70029930F0C00E80244 /* FaceTrackingMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingMovementComponent.swift; sourceTree = "<group>"; };
+		0957B7042993105B00E80244 /* FaceTrackingMovementSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingMovementSystem.swift; sourceTree = "<group>"; };
+		0957B70729931D8800E80244 /* SnakeDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeDependencies.swift; sourceTree = "<group>"; };
+		0957B70929931DBF00E80244 /* SnakeEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEvents.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0957B6A72991A3D600E80244 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0957B6A12991A3D600E80244 = {
+			isa = PBXGroup;
+			children = (
+				0957B6AC2991A3D600E80244 /* LoveECS-Swift */,
+				0957B6AB2991A3D600E80244 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0957B6AB2991A3D600E80244 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6AA2991A3D600E80244 /* LoveECS-Swift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0957B6AC2991A3D600E80244 /* LoveECS-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6C62991A55200E80244 /* AppDelegate */,
+				0957B6DF2991AF5F00E80244 /* Frameworks */,
+				0957B6C12991A45B00E80244 /* Shared */,
+				0957B6C52991A49400E80244 /* Scenes */,
+				0957B6B62991A3D800E80244 /* Assets.xcassets */,
+				0957B6B82991A3D800E80244 /* LaunchScreen.storyboard */,
+				0957B6BB2991A3D800E80244 /* Info.plist */,
+			);
+			path = "LoveECS-Swift";
+			sourceTree = "<group>";
+		};
+		0957B6C12991A45B00E80244 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6CB2991A71500E80244 /* BaseClasses */,
+				0957B6C22991A46100E80244 /* Protocols */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		0957B6C22991A46100E80244 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6C32991A47400E80244 /* SceneFactory.swift */,
+				0957B6C72991A56500E80244 /* ViewCode.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0957B6C52991A49400E80244 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6CE2991A75500E80244 /* Snake */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		0957B6C62991A55200E80244 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6AD2991A3D600E80244 /* AppDelegate.swift */,
+				0957B6AF2991A3D600E80244 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		0957B6CB2991A71500E80244 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6CC2991A72200E80244 /* BaseViewController.swift */,
+				0957B6D82991A9D500E80244 /* BaseSKView.swift */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
+		0957B6CE2991A75500E80244 /* Snake */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6DC2991AE3600E80244 /* Game */,
+				0957B6D52991A8A400E80244 /* Views */,
+				0957B6CF2991A76800E80244 /* SnakeConfigurator.swift */,
+				0957B6D12991A7A000E80244 /* SnakeViewController.swift */,
+			);
+			path = Snake;
+			sourceTree = "<group>";
+		};
+		0957B6D52991A8A400E80244 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6D32991A7B800E80244 /* SnakeView.swift */,
+				0957B6DA2991AC5000E80244 /* FaceTrackingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0957B6DC2991AE3600E80244 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				0957B70629931D5F00E80244 /* Shared */,
+				0957B6F32992E3B400E80244 /* Entities */,
+				0957B6F52992E3CA00E80244 /* Components */,
+				0957B6F42992E3BD00E80244 /* Systems */,
+				0957B6DD2991AE4100E80244 /* SnakeGameScene.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		0957B6DF2991AF5F00E80244 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6E02991AF6800E80244 /* LoveECS */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		0957B6E02991AF6800E80244 /* LoveECS */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6F02991B17000E80244 /* BaseComponents */,
+				0957B6ED2991B03200E80244 /* SpriteKit */,
+				0957B6E12991AF7D00E80244 /* LoveWorld.swift */,
+				0957B6E32991AF8600E80244 /* LoveEntity.swift */,
+				0957B6E52991AF8E00E80244 /* LoveComponent.swift */,
+				0957B6E72991AF9600E80244 /* LoveSystem.swift */,
+				0957B6E92991AFA000E80244 /* LoveEvent.swift */,
+				0957B6EB2991AFAC00E80244 /* LoveUtils.swift */,
+			);
+			path = LoveECS;
+			sourceTree = "<group>";
+		};
+		0957B6ED2991B03200E80244 /* SpriteKit */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6EE2991B03E00E80244 /* LoveScene.swift */,
+			);
+			path = SpriteKit;
+			sourceTree = "<group>";
+		};
+		0957B6F02991B17000E80244 /* BaseComponents */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6F12991B18600E80244 /* SpriteComponent.swift */,
+			);
+			path = BaseComponents;
+			sourceTree = "<group>";
+		};
+		0957B6F32992E3B400E80244 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		0957B6F42992E3BD00E80244 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6FE2992FF9500E80244 /* SnakeMovementSystem.swift */,
+				0957B7042993105B00E80244 /* FaceTrackingMovementSystem.swift */,
+				095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */,
+			);
+			path = Systems;
+			sourceTree = "<group>";
+		};
+		0957B6F52992E3CA00E80244 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0957B6F82992E44E00E80244 /* SnakeBodyComponent.swift */,
+				0957B6FC2992FF6800E80244 /* SnakeMovementComponent.swift */,
+				0957B70029930F0C00E80244 /* FaceTrackingMovementComponent.swift */,
+				095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */,
+				095326EF2994260100ECA5D3 /* ColliderComponent.swift */,
+				0953271B29953AAE00ECA5D3 /* SnakeColliderComponent.swift */,
+				0953271F299639EB00ECA5D3 /* TextureComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0957B70629931D5F00E80244 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				0957B70729931D8800E80244 /* SnakeDependencies.swift */,
+				0957B70929931DBF00E80244 /* SnakeEvents.swift */,
+				09470D3C2996769C00BE3A54 /* GameLayer.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0957B6A92991A3D600E80244 /* LoveECS-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0957B6BE2991A3D800E80244 /* Build configuration list for PBXNativeTarget "LoveECS-Swift" */;
+			buildPhases = (
+				0957B6A62991A3D600E80244 /* Sources */,
+				0957B6A72991A3D600E80244 /* Frameworks */,
+				0957B6A82991A3D600E80244 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LoveECS-Swift";
+			productName = "LoveECS-Swift";
+			productReference = 0957B6AA2991A3D600E80244 /* LoveECS-Swift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0957B6A22991A3D600E80244 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					0957B6A92991A3D600E80244 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 0957B6A52991A3D600E80244 /* Build configuration list for PBXProject "LoveECS-Swift" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0957B6A12991A3D600E80244;
+			productRefGroup = 0957B6AB2991A3D600E80244 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0957B6A92991A3D600E80244 /* LoveECS-Swift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0957B6A82991A3D600E80244 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0957B6BA2991A3D800E80244 /* LaunchScreen.storyboard in Resources */,
+				0957B6B72991A3D800E80244 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0957B6A62991A3D600E80244 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0957B6C82991A56500E80244 /* ViewCode.swift in Sources */,
+				09470D3D2996769C00BE3A54 /* GameLayer.swift in Sources */,
+				0957B70A29931DBF00E80244 /* SnakeEvents.swift in Sources */,
+				0957B6DE2991AE4100E80244 /* SnakeGameScene.swift in Sources */,
+				0957B6EA2991AFA000E80244 /* LoveEvent.swift in Sources */,
+				095326EC2994168C00ECA5D3 /* FruitSpawnerComponent.swift in Sources */,
+				0957B6AE2991A3D600E80244 /* AppDelegate.swift in Sources */,
+				0957B6B02991A3D600E80244 /* SceneDelegate.swift in Sources */,
+				0957B6EC2991AFAC00E80244 /* LoveUtils.swift in Sources */,
+				0957B6E22991AF7D00E80244 /* LoveWorld.swift in Sources */,
+				0957B6E62991AF8E00E80244 /* LoveComponent.swift in Sources */,
+				0957B6C42991A47400E80244 /* SceneFactory.swift in Sources */,
+				0957B6FF2992FF9500E80244 /* SnakeMovementSystem.swift in Sources */,
+				0957B7052993105B00E80244 /* FaceTrackingMovementSystem.swift in Sources */,
+				0957B6D22991A7A000E80244 /* SnakeViewController.swift in Sources */,
+				0957B6E42991AF8600E80244 /* LoveEntity.swift in Sources */,
+				09532720299639EB00ECA5D3 /* TextureComponent.swift in Sources */,
+				0957B6F22991B18600E80244 /* SpriteComponent.swift in Sources */,
+				095326F02994260100ECA5D3 /* ColliderComponent.swift in Sources */,
+				0957B6D92991A9D500E80244 /* BaseSKView.swift in Sources */,
+				0953271C29953AAE00ECA5D3 /* SnakeColliderComponent.swift in Sources */,
+				0957B6F92992E44E00E80244 /* SnakeBodyComponent.swift in Sources */,
+				0957B70129930F0C00E80244 /* FaceTrackingMovementComponent.swift in Sources */,
+				0957B6CD2991A72200E80244 /* BaseViewController.swift in Sources */,
+				0957B6D02991A76800E80244 /* SnakeConfigurator.swift in Sources */,
+				0957B6EF2991B03E00E80244 /* LoveScene.swift in Sources */,
+				095326EE2994171D00ECA5D3 /* FruitSpawnerSystem.swift in Sources */,
+				0957B6E82991AF9600E80244 /* LoveSystem.swift in Sources */,
+				0957B6FD2992FF6800E80244 /* SnakeMovementComponent.swift in Sources */,
+				0957B6DB2991AC5000E80244 /* FaceTrackingView.swift in Sources */,
+				0957B6D42991A7B800E80244 /* SnakeView.swift in Sources */,
+				0957B70829931D8800E80244 /* SnakeDependencies.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0957B6B82991A3D800E80244 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0957B6B92991A3D800E80244 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0957B6BC2991A3D800E80244 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0957B6BD2991A3D800E80244 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0957B6BF2991A3D800E80244 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3MWCW3Z467;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LoveECS-Swift/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrekBot.LoveECS-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		0957B6C02991A3D800E80244 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3MWCW3Z467;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LoveECS-Swift/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.arcade-games";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.KrekBot.LoveECS-Swift";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0957B6A52991A3D600E80244 /* Build configuration list for PBXProject "LoveECS-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0957B6BC2991A3D800E80244 /* Debug */,
+				0957B6BD2991A3D800E80244 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0957B6BE2991A3D800E80244 /* Build configuration list for PBXNativeTarget "LoveECS-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0957B6BF2991A3D800E80244 /* Debug */,
+				0957B6C02991A3D800E80244 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0957B6A22991A3D600E80244 /* Project object */;
+}
