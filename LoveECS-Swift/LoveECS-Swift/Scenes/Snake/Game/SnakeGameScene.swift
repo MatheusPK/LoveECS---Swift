@@ -19,7 +19,7 @@ class SnakeGameScene: LoveScene {
         let faceTrackingView = loveDependencies[SnakeDependencies.faceTrackingView.key()] as! FaceTrackingView
         
         let bakcgroundEntity = LoveEntity(components: [
-            LoveSpriteComponent(color: .clear, size: view.frame.size, position: CGPoint(x: size.width/2, y: size.height/2), layer: .background),
+            LoveSpriteComponent(color: .clear, size: size, position: CGPoint(x: size.width/2, y: size.height/2), layer: .background),
             TextureComponent(texture: SKTexture(imageNamed: "fundo"))
         ])
         
@@ -27,7 +27,7 @@ class SnakeGameScene: LoveScene {
             SnakeBodyComponent(nodeSize: CGSize(width: 30, height: 30), bodyOffset: 0, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
             SnakeMovementComponent(speed: 10, direction: .idle),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
-            SnakeColliderComponent(type: .snake, collidibleTypes: [.fruit], contactTestTypes: [.all]),
+            SnakeColliderComponent(type: .snake, collidibleTypes: [.none], contactTestTypes: [.all]),
 //            TextureComponent(texture: .init(imageNamed: "caveira"))
         ])
 
@@ -49,7 +49,7 @@ class SnakeGameScene: LoveScene {
     override func update(_ currentTime: TimeInterval) {
         let delta: TimeInterval = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
-        
+        print(scene?.size)
         world.update(dt: delta)
     }
 }

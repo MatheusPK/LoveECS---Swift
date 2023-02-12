@@ -50,7 +50,7 @@ class SnakeBodyComponent: LoveComponent {
     
     func createNewNode() -> SKSpriteNode {
         let sprite = SKSpriteNode(color: .systemPink, size: nodeSize)
-        sprite.position = head.position
+        sprite.position = snakeHeadLastPosition
         body.append(sprite)
         return sprite
     }

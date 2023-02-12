@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09440A042999A2DE00849966 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A032999A2DE00849966 /* CGPoint+Extension.swift */; };
 		09470D3D2996769C00BE3A54 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09470D3C2996769C00BE3A54 /* GameLayer.swift */; };
 		095326EC2994168C00ECA5D3 /* FruitSpawnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */; };
 		095326EE2994171D00ECA5D3 /* FruitSpawnerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09440A032999A2DE00849966 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		09470D3C2996769C00BE3A54 /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerComponent.swift; sourceTree = "<group>"; };
 		095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerSystem.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09440A022999A2C800849966 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				09440A032999A2DE00849966 /* CGPoint+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0957B6A12991A3D600E80244 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 		0957B6C12991A45B00E80244 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				09440A022999A2C800849966 /* Extensions */,
 				0957B6CB2991A71500E80244 /* BaseClasses */,
 				0957B6C22991A46100E80244 /* Protocols */,
 			);
@@ -372,6 +383,7 @@
 				0953271C29953AAE00ECA5D3 /* SnakeColliderComponent.swift in Sources */,
 				0957B6F92992E44E00E80244 /* SnakeBodyComponent.swift in Sources */,
 				0957B70129930F0C00E80244 /* FaceTrackingMovementComponent.swift in Sources */,
+				09440A042999A2DE00849966 /* CGPoint+Extension.swift in Sources */,
 				0957B6CD2991A72200E80244 /* BaseViewController.swift in Sources */,
 				0957B6D02991A76800E80244 /* SnakeConfigurator.swift in Sources */,
 				0957B6EF2991B03E00E80244 /* LoveScene.swift in Sources */,
