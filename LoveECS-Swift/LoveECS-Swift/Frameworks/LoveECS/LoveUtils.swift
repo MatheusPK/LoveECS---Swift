@@ -9,7 +9,7 @@ import Foundation
 
 class LoveUtils {
     class Timer {
-        let interval: TimeInterval
+        var interval: TimeInterval
         var timer: TimeInterval = .zero
         
         init(interval: TimeInterval) {

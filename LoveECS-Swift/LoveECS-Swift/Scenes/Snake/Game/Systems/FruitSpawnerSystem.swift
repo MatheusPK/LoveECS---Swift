@@ -22,7 +22,6 @@ extension FruitSpawnerComponent: LoveSystemProtocol {
             let fruitEntity = LoveEntity(components: [
                 LoveSpriteComponent(color: fruitBodyComponent.fruitColor, size: fruitBodyComponent.fruitSize, layer: .items),
                 ColliderComponent(type: .fruit, collidibleTypes: [.none], contactTestTypes: [.snake]),
-//                TextureComponent(texture: SKTexture(imageNamed: "iconeTriangulo"))
             ])
 
             while true {

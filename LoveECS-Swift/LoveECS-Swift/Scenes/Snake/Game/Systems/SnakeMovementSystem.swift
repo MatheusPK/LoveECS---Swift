@@ -9,36 +9,15 @@ import Foundation
 import SpriteKit
 
 extension SnakeMovementComponent: LoveSystemProtocol {
-    func handleEvent(world: LoveWorld?, event: LoveEvent, dt: TimeInterval) {
-        if event.type == SnakeEvents.fruitHit.key() {
-            guard let snakeBodyComponent = entity?.component(ofType: SnakeBodyComponent.self) else { return }
-            snakeBodyComponent.shouldIncreaseBodySize = true
-//            let newNode = snakeBodyComponent.createNewNode()
-//            let newEntity = LoveEntity(components: [
-//                LoveSpriteComponent(sprite: newNode, layer: .player),
-//                //                TextureComponent(texture: SKTexture(imageNamed: "iconeTriangulo"))
-//            ])
-//            world?.addEntity(newEntity)
-//            world?.enqueueEvent(event: LoveEvent(type: SnakeEvents.fruitSpawn.key()))
-        } else if event.type == SnakeEvents.createSnakeBody.key() {
-            guard let snakeBodyComponent = entity?.component(ofType: SnakeBodyComponent.self) else { return }
-            let body = snakeBodyComponent.createBody()
-            for node in body {
-                let entity = LoveEntity(components: [
-                    LoveSpriteComponent(sprite: node, layer: .player),
-                    //                    TextureComponent(texture: SKTexture(imageNamed: "iconeTriangulo"))
-                ])
-                world?.addEntity(entity)
-            }
-            snakeBodyComponent.body = body
-        }
-    }
+    func onAdd(world: LoveWorld?) {}
+    
+    func handleEvent(world: LoveWorld?, event: LoveEvent, dt: TimeInterval) {}
     
     func process(world: LoveWorld?, dt: TimeInterval) {
         guard let snakeBodyComponent = entity?.component(ofType: SnakeBodyComponent.self) else { return }
         guard let snakeMovementComponent = entity?.component(ofType: SnakeMovementComponent.self) else { return }
         
-        var lastSnakeHeadPosition = snakeBodyComponent.head.position
+        var snakeHeadPosition = snakeBodyComponent.head.position
         let snakeHead = snakeBodyComponent.head
         let snakeNodeSize = snakeBodyComponent.nodeSize
         let snakeBodyOffset = snakeBodyComponent.bodyOffset
@@ -60,63 +39,48 @@ extension SnakeMovementComponent: LoveSystemProtocol {
                 return
             }
             
-            movement = getMovementOffset(movement: movement, lastPosition: lastSnakeHeadPosition, newPosition: (snakeHead.position + movement), bounds: world?.scene?.size ?? .zero, nodeSize: snakeNodeSize)
+            movement = getMovementOffset(movement: movement, currentPosition: snakeHeadPosition, bounds: world?.scene?.size ?? .zero, nodeSize: snakeNodeSize)
             
 //             movimento titan
-//                        snakeHead.run(.move(to: CGPoint(x: lastSnakeHeadPosition.x + newVectorMove.dx, y: lastSnakeHeadPosition.y + newVectorMove.dy), duration: 1/speed))
-//                        for i in 0..<snakeBodyComponent.body.count {
-//                            let node = snakeBodyComponent.body[i]
-//                            let auxPosition = node.position
-//                            node.run(.move(to: lastSnakeHeadPosition, duration: 1/self.speed))
-//                            lastSnakeHeadPosition = auxPosition
-//                        }
+//            let newPosition = snakeHeadPosition + movement
+//            snakeHead.run(.move(to: newPosition, duration: 1/speed))
+//            for i in 0..<snakeBodyComponent.body.count {
+//                let node = snakeBodyComponent.body[i]
+//                let auxPosition = node.position
+//                node.run(.move(to: snakeHeadPosition, duration: 1/self.speed))
+//                snakeHeadPosition = auxPosition
+//            }
             
 //             movimento classico
             snakeHead.position += movement
             for i in 0..<snakeBodyComponent.body.count {
                 let node = snakeBodyComponent.body[i]
                 let auxPosition = node.position
-                node.position = lastSnakeHeadPosition
-                lastSnakeHeadPosition = auxPosition
+                node.position = snakeHeadPosition
+                snakeHeadPosition = auxPosition
             }
             
-            snakeBodyComponent.snakeHeadLastPosition = lastSnakeHeadPosition
-            
-            if snakeBodyComponent.shouldIncreaseBodySize {
-                let sprite = SKSpriteNode(color: .systemPink, size: snakeNodeSize)
-                sprite.position = lastSnakeHeadPosition
-                let newEntity = LoveEntity(components: [
-                    LoveSpriteComponent(sprite: sprite, layer: .player),
-                ])
-                snakeBodyComponent.body.append(sprite)
-                world?.addEntity(newEntity)
-                world?.enqueueEvent(event: LoveEvent(type: SnakeEvents.fruitSpawn.key()))
-                snakeBodyComponent.shouldIncreaseBodySize = false
-            }
+            snakeBodyComponent.lastSnakeHeadPosition = snakeHeadPosition
         }
         
     }
     
-    func onAdd(world: LoveWorld?) {
-        world?.enqueueEvent(event: LoveEvent(type: SnakeEvents.createSnakeBody.key()))
-    }
-    
-    func getMovementOffset(movement: CGPoint, lastPosition: CGPoint, newPosition: CGPoint, bounds: CGSize, nodeSize: CGSize) -> CGPoint {
-        
+    private func getMovementOffset(movement: CGPoint, currentPosition: CGPoint, bounds: CGSize, nodeSize: CGSize) -> CGPoint {
+        let newPosition = currentPosition + movement
         var moveOffset = movement
         
         if newPosition.x > bounds.width {
-            moveOffset.x = bounds.width - lastPosition.x - nodeSize.width/2
+            moveOffset.x = bounds.width - currentPosition.x - nodeSize.width/2
         } else if newPosition.x < 0 {
-            moveOffset.x = 0 - lastPosition.x + nodeSize.width/2
+            moveOffset.x = 0 - currentPosition.x + nodeSize.width/2
         } else if newPosition.y > bounds.height {
-            moveOffset.y = bounds.height - lastPosition.y - nodeSize.height/2
+            moveOffset.y = bounds.height - currentPosition.y - nodeSize.height/2
         } else if newPosition.y < 0 {
-            moveOffset.y = 0 - lastPosition.y + nodeSize.height/2
+            moveOffset.y = 0 - currentPosition.y + nodeSize.height/2
         }
         
         return moveOffset
-
+        
     }
     
 }

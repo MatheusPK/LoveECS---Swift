@@ -25,17 +25,17 @@ class SnakeGameScene: LoveScene {
         
         let snakeEntity = LoveEntity(components: [
             SnakeBodyComponent(nodeSize: CGSize(width: 30, height: 30), bodyOffset: 0, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
-            SnakeMovementComponent(speed: 10, direction: .idle),
+            SnakeMovementComponent(speed: 5, direction: .idle),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
             SnakeColliderComponent(type: .snake, collidibleTypes: [.none], contactTestTypes: [.all]),
-//            TextureComponent(texture: .init(imageNamed: "caveira"))
         ])
 
         let fruitEntity = LoveEntity(components: [
             FruitSpawnerComponent(fruitSize: CGSize(width: 30, height: 30), fruitColor: .systemPink, spawnRate: 1),
         ])
 
-        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEvents.fruitHit.key(), SnakeEvents.createSnakeBody.key()], componentClass: SnakeMovementComponent.self)
+        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [], componentClass: SnakeMovementComponent.self)
+        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEvents.fruitHit.key()], componentClass: SnakeBodyComponent.self)
         let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEvents.fruitSpawn.key()], componentClass: FruitSpawnerComponent.self)
 
         world.addEntity(bakcgroundEntity)
@@ -43,13 +43,13 @@ class SnakeGameScene: LoveScene {
         world.addEntity(fruitEntity)
 
         world.addSystem(snakeMovementSystem)
+        world.addSystem(snakeBodySystem)
         world.addSystem(fruitSpawnerSystem)
     }
     
     override func update(_ currentTime: TimeInterval) {
         let delta: TimeInterval = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
-        print(scene?.size)
         world.update(dt: delta)
     }
 }
