@@ -34,6 +34,8 @@ class SnakeBodyComponent: LoveComponent {
     
     override func didAddToEntity() {
         entity?.addComponent(LoveSpriteComponent(sprite: head, layer: .player))
+        entity?.addComponent(ColliderComponent(type: .snakeHead, collidibleTypes: [], contactTestTypes: [.snakeBody, .wall]))
+        entity?.addComponent(TypeComponent(type: .snakeHead))
     }
     
 }

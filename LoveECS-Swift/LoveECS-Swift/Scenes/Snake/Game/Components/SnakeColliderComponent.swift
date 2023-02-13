@@ -7,12 +7,22 @@
 
 import Foundation
 
-class SnakeColliderComponent: ColliderComponent {
-    override func didAddToEntity() {
-        super.didAddToEntity()
-        guard let snakeBodyComponent = entity?.component(ofType: SnakeBodyComponent.self) else { return }
-        for node in snakeBodyComponent.body {
-//            node.physicsBody = physicsBodyFactory(size: node.size)
+class SnakeColliderComponent: LoveComponent, ContactNotifiable {
+    func contactDidBegin(with entity: LoveEntity, world: LoveWorld) {
+        guard let typeComponent = entity.component(ofType: TypeComponent.self) else { return }
+        switch typeComponent.type {
+        case .snakeHead:
+            break
+        case .snakeBody:
+            world.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.SNAKE_BODY_HIT))
+        case .fruit:
+            world.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_HIT))
+            world.removeEntity(entity)
+        case .wall:
+            print("bati na parede")
         }
     }
+    
+    func contactDidEnd(with entity: LoveEntity, world: LoveWorld) {}
 }
+

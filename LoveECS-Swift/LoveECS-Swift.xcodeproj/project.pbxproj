@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		09440A042999A2DE00849966 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A032999A2DE00849966 /* CGPoint+Extension.swift */; };
 		09440A062999A8D700849966 /* SnakeBodySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A052999A8D700849966 /* SnakeBodySystem.swift */; };
+		09440A08299A7C7300849966 /* TypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A07299A7C7300849966 /* TypeComponent.swift */; };
 		09470D3D2996769C00BE3A54 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09470D3C2996769C00BE3A54 /* GameLayer.swift */; };
 		095326EC2994168C00ECA5D3 /* FruitSpawnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */; };
 		095326EE2994171D00ECA5D3 /* FruitSpawnerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */; };
@@ -41,13 +42,13 @@
 		0957B6FF2992FF9500E80244 /* SnakeMovementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B6FE2992FF9500E80244 /* SnakeMovementSystem.swift */; };
 		0957B70129930F0C00E80244 /* FaceTrackingMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B70029930F0C00E80244 /* FaceTrackingMovementComponent.swift */; };
 		0957B7052993105B00E80244 /* FaceTrackingMovementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B7042993105B00E80244 /* FaceTrackingMovementSystem.swift */; };
-		0957B70829931D8800E80244 /* SnakeDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B70729931D8800E80244 /* SnakeDependencies.swift */; };
-		0957B70A29931DBF00E80244 /* SnakeEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B70929931DBF00E80244 /* SnakeEvents.swift */; };
+		0957B70A29931DBF00E80244 /* SnakeEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0957B70929931DBF00E80244 /* SnakeEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		09440A032999A2DE00849966 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		09440A052999A8D700849966 /* SnakeBodySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeBodySystem.swift; sourceTree = "<group>"; };
+		09440A07299A7C7300849966 /* TypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeComponent.swift; sourceTree = "<group>"; };
 		09470D3C2996769C00BE3A54 /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerComponent.swift; sourceTree = "<group>"; };
 		095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerSystem.swift; sourceTree = "<group>"; };
@@ -82,8 +83,7 @@
 		0957B6FE2992FF9500E80244 /* SnakeMovementSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeMovementSystem.swift; sourceTree = "<group>"; };
 		0957B70029930F0C00E80244 /* FaceTrackingMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingMovementComponent.swift; sourceTree = "<group>"; };
 		0957B7042993105B00E80244 /* FaceTrackingMovementSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTrackingMovementSystem.swift; sourceTree = "<group>"; };
-		0957B70729931D8800E80244 /* SnakeDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeDependencies.swift; sourceTree = "<group>"; };
-		0957B70929931DBF00E80244 /* SnakeEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEvents.swift; sourceTree = "<group>"; };
+		0957B70929931DBF00E80244 /* SnakeEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +279,7 @@
 				095326EF2994260100ECA5D3 /* ColliderComponent.swift */,
 				0953271B29953AAE00ECA5D3 /* SnakeColliderComponent.swift */,
 				0953271F299639EB00ECA5D3 /* TextureComponent.swift */,
+				09440A07299A7C7300849966 /* TypeComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -286,8 +287,7 @@
 		0957B70629931D5F00E80244 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				0957B70729931D8800E80244 /* SnakeDependencies.swift */,
-				0957B70929931DBF00E80244 /* SnakeEvents.swift */,
+				0957B70929931DBF00E80244 /* SnakeEnvironment.swift */,
 				09470D3C2996769C00BE3A54 /* GameLayer.swift */,
 			);
 			path = Shared;
@@ -365,7 +365,7 @@
 			files = (
 				0957B6C82991A56500E80244 /* ViewCode.swift in Sources */,
 				09470D3D2996769C00BE3A54 /* GameLayer.swift in Sources */,
-				0957B70A29931DBF00E80244 /* SnakeEvents.swift in Sources */,
+				0957B70A29931DBF00E80244 /* SnakeEnvironment.swift in Sources */,
 				0957B6DE2991AE4100E80244 /* SnakeGameScene.swift in Sources */,
 				0957B6EA2991AFA000E80244 /* LoveEvent.swift in Sources */,
 				095326EC2994168C00ECA5D3 /* FruitSpawnerComponent.swift in Sources */,
@@ -374,6 +374,7 @@
 				0957B6EC2991AFAC00E80244 /* LoveUtils.swift in Sources */,
 				0957B6E22991AF7D00E80244 /* LoveWorld.swift in Sources */,
 				0957B6E62991AF8E00E80244 /* LoveComponent.swift in Sources */,
+				09440A08299A7C7300849966 /* TypeComponent.swift in Sources */,
 				0957B6C42991A47400E80244 /* SceneFactory.swift in Sources */,
 				0957B6FF2992FF9500E80244 /* SnakeMovementSystem.swift in Sources */,
 				0957B7052993105B00E80244 /* FaceTrackingMovementSystem.swift in Sources */,
@@ -396,7 +397,6 @@
 				0957B6FD2992FF6800E80244 /* SnakeMovementComponent.swift in Sources */,
 				0957B6DB2991AC5000E80244 /* FaceTrackingView.swift in Sources */,
 				0957B6D42991A7B800E80244 /* SnakeView.swift in Sources */,
-				0957B70829931D8800E80244 /* SnakeDependencies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

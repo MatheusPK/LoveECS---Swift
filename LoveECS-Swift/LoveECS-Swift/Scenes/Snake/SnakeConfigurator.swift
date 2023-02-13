@@ -21,7 +21,7 @@ class SnakeConfigurator: SceneFactory {
         let gameScene = SnakeGameScene(world: gameWorld, size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.75))
         gameWorld.scene = gameScene
         
-        gameScene.loveDependencies[SnakeDependencies.faceTrackingView.key()] = view.faceTrackingView
+        gameScene.loveDependencies[SnakeEnvironment.DEPENDENCIES.FACE_TRACKING_VIEW] = view.faceTrackingView
         
         view.gameView.presentScene(gameScene)
         

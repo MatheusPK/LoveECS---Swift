@@ -14,31 +14,32 @@ class SnakeGameScene: LoveScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        let faceTrackingView = loveDependencies[SnakeEnvironment.DEPENDENCIES.FACE_TRACKING_VIEW] as! FaceTrackingView
         
-        let faceTrackingView = loveDependencies[SnakeDependencies.faceTrackingView.key()] as! FaceTrackingView
-        
-        let bakcgroundEntity = LoveEntity(components: [
+
+        let backgroundEntity = LoveEntity(components: [
             LoveSpriteComponent(color: .clear, size: size, position: CGPoint(x: size.width/2, y: size.height/2), layer: .background),
-            TextureComponent(texture: SKTexture(imageNamed: "fundo"))
+            TextureComponent(texture: SKTexture(imageNamed: "fundo")),
+            ColliderComponent(type: .wall, collidibleTypes: [.all], contactTestTypes: [.all], physicsBody: SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: size.width/2, y: size.height/2), size: CGSize(width: size.width - 20, height: size.height - 20)))),
+            TypeComponent(type: .wall)
         ])
         
         let snakeEntity = LoveEntity(components: [
-            SnakeBodyComponent(nodeSize: CGSize(width: 30, height: 30), bodyOffset: 0, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
-            SnakeMovementComponent(speed: 5, direction: .idle),
+            SnakeBodyComponent(nodeSize: CGSize(width: 30, height: 30), bodyOffset: 5, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
+            SnakeMovementComponent(speed: 10, direction: .idle),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
-            SnakeColliderComponent(type: .snake, collidibleTypes: [.none], contactTestTypes: [.all]),
+            SnakeColliderComponent(),
         ])
 
         let fruitEntity = LoveEntity(components: [
             FruitSpawnerComponent(fruitSize: CGSize(width: 30, height: 30), fruitColor: .systemPink, spawnRate: 1),
         ])
 
-        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [], componentClass: SnakeMovementComponent.self)
-        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEvents.fruitHit.key()], componentClass: SnakeBodyComponent.self)
-        let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEvents.fruitSpawn.key()], componentClass: FruitSpawnerComponent.self)
+        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT], componentClass: SnakeMovementComponent.self)
+        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeBodyComponent.self)
+        let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: FruitSpawnerComponent.self)
 
-        world.addEntity(bakcgroundEntity)
+        world.addEntity(backgroundEntity)
         world.addEntity(snakeEntity)
         world.addEntity(fruitEntity)
 
@@ -58,18 +59,28 @@ class SnakeGameScene: LoveScene {
 // MARK: - SKPhysicsContactDelegate
 extension SnakeGameScene {
     func didBegin(_ contact: SKPhysicsContact) {
-        guard let entityA = contact.bodyA.node?.entity else { return }
-        guard let entityB = contact.bodyB.node?.entity else { return }
-        
-        guard let entityAColliderComponent = entityA.component(ofType: SnakeColliderComponent.self) else { return }
-        guard let entityBColliderComponent = entityB.component(ofType: ColliderComponent.self) else { return }
-        
-        if entityAColliderComponent.type == .snake && entityBColliderComponent.type == .fruit {
-            world.enqueueEvent(event: LoveEvent(type: SnakeEvents.fruitHit.key()))
-            world.removeEntity(entityB as! LoveEntity)
-        } else if entityAColliderComponent.type == .fruit && entityBColliderComponent.type == .snake {
-            world.enqueueEvent(event: LoveEvent(type: SnakeEvents.fruitHit.key()))
-            world.removeEntity(entityA as! LoveEntity)
+        let entityA = contact.bodyA.node?.entity as? LoveEntity
+        let entityB = contact.bodyB.node?.entity as? LoveEntity
+
+        if let contactNotifiableComponent = entityA?.component(conformingTo: ContactNotifiable.self), let otherEntity = entityB {
+            contactNotifiableComponent.contactDidBegin(with: otherEntity, world: world)
+        }
+
+        if let contactNotifiableComponent = entityB?.component(conformingTo: ContactNotifiable.self), let otherEntity = entityA {
+            contactNotifiableComponent.contactDidBegin(with: otherEntity, world: world)
+        }
+    }
+
+    func didEnd(_ contact: SKPhysicsContact) {
+        let entityA = contact.bodyA.node?.entity as? LoveEntity
+        let entityB = contact.bodyB.node?.entity as? LoveEntity
+
+        if let contactNotifiableComponent = entityA?.component(conformingTo: ContactNotifiable.self), let otherEntity = entityB {
+            contactNotifiableComponent.contactDidEnd(with: otherEntity, world: world)
+        }
+
+        if let contactNotifiableComponent = entityB?.component(conformingTo: ContactNotifiable.self), let otherEntity = entityA {
+            contactNotifiableComponent.contactDidEnd(with: otherEntity, world: world)
         }
     }
 }

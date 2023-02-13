@@ -13,10 +13,11 @@ class LoveUtils {
         var timer: TimeInterval = .zero
         
         init(interval: TimeInterval) {
-            self.interval = interval
+            self.interval = 1/interval
         }
         
-        func fired(_ increment: TimeInterval)-> Bool {
+        func fired(_ increment: TimeInterval, speed: TimeInterval)-> Bool {
+            interval = 1/speed
             if timer >= interval {
                 timer = .zero
                 return true

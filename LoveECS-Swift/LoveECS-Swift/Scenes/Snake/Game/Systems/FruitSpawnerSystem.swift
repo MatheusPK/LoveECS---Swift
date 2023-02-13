@@ -10,18 +10,19 @@ import SpriteKit
 
 extension FruitSpawnerComponent: LoveSystemProtocol {
     func onAdd(world: LoveWorld?) {
-        world?.enqueueEvent(event: LoveEvent(type: SnakeEvents.fruitSpawn.key()))
+        world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_SPAWN))
     }
     
     func handleEvent(world: LoveWorld?, event: LoveEvent, dt: TimeInterval) {
-        if event.type == SnakeEvents.fruitSpawn.key() {
+        if event.type == SnakeEnvironment.EVENTS.FRUIT_SPAWN {
             guard let fruitBodyComponent = entity?.component(ofType: FruitSpawnerComponent.self) else { return }
             guard let world = world else { return }
             guard let scene = world.scene else { return }
             
             let fruitEntity = LoveEntity(components: [
                 LoveSpriteComponent(color: fruitBodyComponent.fruitColor, size: fruitBodyComponent.fruitSize, layer: .items),
-                ColliderComponent(type: .fruit, collidibleTypes: [.none], contactTestTypes: [.snake]),
+                ColliderComponent(type: .fruit, collidibleTypes: [.none], contactTestTypes: [.snakeHead]),
+                TypeComponent(type: .fruit)
             ])
 
             while true {

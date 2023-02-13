@@ -20,3 +20,14 @@ class LoveEntity: GKEntity {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension LoveEntity {
+    func component<P>(conformingTo protocol: P.Type) -> P? {
+        for component in components {
+            if let p = component as? P {
+                return p
+            }
+        }
+        return nil
+    }
+}

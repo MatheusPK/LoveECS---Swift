@@ -12,11 +12,13 @@ class ColliderComponent: LoveComponent {
     let type: ColliderType
     var collidibleTypes: [ColliderType]
     var contactTestTypes: [ColliderType]
+    var physicsBody: SKPhysicsBody?
     
-    init(type: ColliderType, collidibleTypes: [ColliderType], contactTestTypes: [ColliderType]) {
+    init(type: ColliderType, collidibleTypes: [ColliderType], contactTestTypes: [ColliderType], physicsBody: SKPhysicsBody? = nil) {
         self.type = type
         self.collidibleTypes = collidibleTypes
         self.contactTestTypes = contactTestTypes
+        self.physicsBody = physicsBody
         super.init()
     }
     
@@ -52,11 +54,10 @@ class ColliderComponent: LoveComponent {
     }
     
     func physicsBodyFactory(size: CGSize) -> SKPhysicsBody {
-        let physicsBody = SKPhysicsBody(rectangleOf: size)
+        let physicsBody = physicsBody ?? SKPhysicsBody(rectangleOf: size)
         physicsBody.categoryBitMask = type.getBitMask()
         physicsBody.collisionBitMask = getCollisionBitMask()
         physicsBody.contactTestBitMask = getContactTestBitMask()
-        physicsBody.isDynamic = type.isDynamic()
         physicsBody.affectedByGravity = false
         physicsBody.allowsRotation = false
         return physicsBody
@@ -67,7 +68,8 @@ class ColliderComponent: LoveComponent {
 extension ColliderComponent {
     
     enum ColliderType {
-        case snake
+        case snakeHead
+        case snakeBody
         case fruit
         case eventItem
         case wall
@@ -76,22 +78,21 @@ extension ColliderComponent {
         
         func getBitMask() -> UInt32 {
             switch self {
-                case .snake: return 0x1 << 0
-                case .fruit: return 0x1 << 1
-                case .eventItem: return 0x1 << 2
-                case .wall: return 0x1 << 3
+                case .snakeHead: return 0x1 << 0
+                case .snakeBody: return 0x1 << 1
+                case .fruit: return 0x1 << 2
+                case .eventItem: return 0x1 << 3
+                case .wall: return 0x1 << 4
                 case .all: return UInt32.max
                 case .none: return UInt32.zero
             }
         }
         
-        func isDynamic() -> Bool {
-            switch self {
-                case .snake: return true
-                default: return true
-            }
-        }
-        
     }
     
+}
+
+protocol ContactNotifiable {
+    func contactDidBegin(with entity: LoveEntity, world: LoveWorld)
+    func contactDidEnd(with entity: LoveEntity, world: LoveWorld)
 }

@@ -11,7 +11,15 @@ import SpriteKit
 extension SnakeMovementComponent: LoveSystemProtocol {
     func onAdd(world: LoveWorld?) {}
     
-    func handleEvent(world: LoveWorld?, event: LoveEvent, dt: TimeInterval) {}
+    func handleEvent(world: LoveWorld?, event: LoveEvent, dt: TimeInterval) {
+        switch event.type {
+        case SnakeEnvironment.EVENTS.SNAKE_BODY_HIT:
+            direction = .idle
+            speed += 10
+        default:
+            break
+        }
+    }
     
     func process(world: LoveWorld?, dt: TimeInterval) {
         guard let snakeBodyComponent = entity?.component(ofType: SnakeBodyComponent.self) else { return }
@@ -22,7 +30,7 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         let snakeNodeSize = snakeBodyComponent.nodeSize
         let snakeBodyOffset = snakeBodyComponent.bodyOffset
         
-        if snakeMovementComponent.movementTimer.fired(dt) {
+        if snakeMovementComponent.movementTimer.fired(dt, speed: speed) {
             
             var movement = CGPoint(x: 0, y: 0)
             
@@ -41,15 +49,15 @@ extension SnakeMovementComponent: LoveSystemProtocol {
             
             movement = getMovementOffset(movement: movement, currentPosition: snakeHeadPosition, bounds: world?.scene?.size ?? .zero, nodeSize: snakeNodeSize)
             
-//             movimento titan
-//            let newPosition = snakeHeadPosition + movement
-//            snakeHead.run(.move(to: newPosition, duration: 1/speed))
-//            for i in 0..<snakeBodyComponent.body.count {
-//                let node = snakeBodyComponent.body[i]
-//                let auxPosition = node.position
-//                node.run(.move(to: snakeHeadPosition, duration: 1/self.speed))
-//                snakeHeadPosition = auxPosition
-//            }
+            //             movimento titan
+            //            let newPosition = snakeHeadPosition + movement
+            //            snakeHead.run(.move(to: newPosition, duration: 1/speed))
+            //            for i in 0..<snakeBodyComponent.body.count {
+            //                let node = snakeBodyComponent.body[i]
+            //                let auxPosition = node.position
+            //                node.run(.move(to: snakeHeadPosition, duration: 1/self.speed))
+            //                snakeHeadPosition = auxPosition
+            //            }
             
 //             movimento classico
             snakeHead.position += movement
