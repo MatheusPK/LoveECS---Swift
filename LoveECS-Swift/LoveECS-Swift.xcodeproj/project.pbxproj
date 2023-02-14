@@ -11,6 +11,7 @@
 		09440A062999A8D700849966 /* SnakeBodySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A052999A8D700849966 /* SnakeBodySystem.swift */; };
 		09440A08299A7C7300849966 /* TypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A07299A7C7300849966 /* TypeComponent.swift */; };
 		09440A14299BD3DC00849966 /* SnakeColliderSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A13299BD3DC00849966 /* SnakeColliderSystem.swift */; };
+		09440A16299BD84100849966 /* LoveDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A15299BD84100849966 /* LoveDebug.swift */; };
 		09470D3D2996769C00BE3A54 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09470D3C2996769C00BE3A54 /* GameLayer.swift */; };
 		095326EC2994168C00ECA5D3 /* FruitSpawnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */; };
 		095326EE2994171D00ECA5D3 /* FruitSpawnerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */; };
@@ -51,6 +52,7 @@
 		09440A052999A8D700849966 /* SnakeBodySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeBodySystem.swift; sourceTree = "<group>"; };
 		09440A07299A7C7300849966 /* TypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeComponent.swift; sourceTree = "<group>"; };
 		09440A13299BD3DC00849966 /* SnakeColliderSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeColliderSystem.swift; sourceTree = "<group>"; };
+		09440A15299BD84100849966 /* LoveDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveDebug.swift; sourceTree = "<group>"; };
 		09470D3C2996769C00BE3A54 /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 		095326EB2994168C00ECA5D3 /* FruitSpawnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerComponent.swift; sourceTree = "<group>"; };
 		095326ED2994171D00ECA5D3 /* FruitSpawnerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSpawnerSystem.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				0957B6EE2991B03E00E80244 /* LoveScene.swift */,
+				09440A15299BD84100849966 /* LoveDebug.swift */,
 			);
 			path = SpriteKit;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				0957B6C82991A56500E80244 /* ViewCode.swift in Sources */,
 				09470D3D2996769C00BE3A54 /* GameLayer.swift in Sources */,
 				09440A14299BD3DC00849966 /* SnakeColliderSystem.swift in Sources */,
+				09440A16299BD84100849966 /* LoveDebug.swift in Sources */,
 				0957B70A29931DBF00E80244 /* SnakeEnvironment.swift in Sources */,
 				0957B6DE2991AE4100E80244 /* SnakeGameScene.swift in Sources */,
 				0957B6EA2991AFA000E80244 /* LoveEvent.swift in Sources */,

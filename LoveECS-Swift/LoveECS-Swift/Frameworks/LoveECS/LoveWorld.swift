@@ -18,7 +18,7 @@ class LoveWorld {
     var entitiesToAdd = [LoveEntity]()
     var entitiesToRemove = [LoveEntity]()
     
-    var systems = Set<LoveSystem>()
+    var systems = [LoveSystem]()
     var systemsToAdd  = [LoveSystem]()
     var systemsToRemove  = [LoveSystem]()
     
@@ -26,11 +26,30 @@ class LoveWorld {
     var eventsToAdd = [LoveEvent]()
     var eventsToRemove = [EventType]()
     
+    // MARK: - Debug properties
+    var numberOfEnititesAdded: Int = 0
+    var numberOfEntitiesRemoved: Int = 0
+    
+    var numberOfSystemsAdded: Int = 0
+    var numberOfSystemsRemoved: Int = 0
+    var systemLoop: [String] = []
+    
+    var numberOfEventsAdded: Int = 0
+    var numberOfEventsRemoved: Int = 0
+    var eventQueueDebug: [String:[LoveEvent]] = [:]
+    
+    var entityCount: Int = 0
+    var systemCount: Int = 0
+    var eventCount: Int = 0
+    
     // MARK: - World Life Cycle
     func update(dt: TimeInterval) {
         manageEntities()
         manageSystems()
         manageEvents()
+        #if DEBUG
+        manageDebug()
+        #endif
         
         clear()
         
@@ -74,13 +93,15 @@ extension LoveWorld {
     
     private func manageSystems() {
         for systemToAdd in systemsToAdd {
-            systems.insert(systemToAdd)
+            systems.append(systemToAdd)
             addComponents(in: systemToAdd)
             systemToAdd.onAdd()
         }
         
         for systemToRemove in systemsToRemove {
-            systems.remove(systemToRemove)
+            systems.removeAll(where: {
+                $0.componentClass == systemToRemove.componentClass
+            })
             removeComponents(in: systemToRemove)
         }
     }
@@ -111,7 +132,6 @@ extension LoveWorld {
 
 // MARK: - Events Management
 extension LoveWorld {
-    
     func manageEvents() {
         
         for eventToAdd in eventsToAdd {
@@ -132,6 +152,25 @@ extension LoveWorld {
         let events = eventQueue[eventType] ?? []
         if !events.isEmpty { eventsToRemove.append(eventType) }
         return events
+    }
+}
+
+// MARK: - Debug Management
+extension LoveWorld {
+    func manageDebug() {
+        let debugData = LoveDebug(
+            numberOfEnititesAdded: entitiesToAdd.count,
+            numberOfEntitiesRemoved: entitiesToRemove.count,
+            entityCount: entities.count,
+            numberOfSystemsAdded: systemsToAdd.count,
+            numberOfSystemsRemoved: systemsToRemove.count,
+            systemCount: systems.count,
+            systemLoop: systems,
+            numberOfEventsAdded: eventsToAdd.count,
+            numberOfEventsRemoved: eventsToRemove.count,
+            eventQueue: eventQueue
+        )
+        debugData.log()
     }
 }
 

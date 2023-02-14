@@ -17,10 +17,12 @@ protocol LoveSystemProtocol {
 class LoveSystem: GKComponentSystem<GKComponent> {
     weak var world: LoveWorld?
     var observableEvents = [String]()
+    var identifier: String
     
-    init(world: LoveWorld?, observableEvents: [String], componentClass: AnyClass) {
+    init(world: LoveWorld?, observableEvents: [String], componentClass: AnyClass, identifier: String) {
         self.world = world
         self.observableEvents = observableEvents
+        self.identifier = identifier
         super.init(componentClass: componentClass)
     }
     

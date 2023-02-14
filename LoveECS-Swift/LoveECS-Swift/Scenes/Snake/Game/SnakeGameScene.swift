@@ -37,10 +37,10 @@ class SnakeGameScene: LoveScene {
             FruitSpawnerComponent(fruitSize: CGSize(width: 20, height: 20), fruitColor: .systemPink, spawnRate: 1),
         ])
 
-        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeMovementComponent.self)
-        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeBodyComponent.self)
-        let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: FruitSpawnerComponent.self)
-        let snakeColliderSystem = LoveSystem(world: world, observableEvents: [], componentClass: SnakeColliderComponent.self)
+        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeMovementComponent.self, identifier: "SnakeMovementSystem")
+        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeBodyComponent.self, identifier: "SnakeBodySystem")
+        let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: FruitSpawnerComponent.self, identifier: "FruitSpawnerSystem")
+        let snakeColliderSystem = LoveSystem(world: world, observableEvents: [], componentClass: SnakeColliderComponent.self, identifier: "SnakeColliderSystem")
 
         world.addEntity(backgroundEntity)
         world.addEntity(snakeEntity)
