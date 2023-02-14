@@ -22,7 +22,7 @@ struct LoveDebug {
     var eventQueue: [String:[LoveEvent]]
     
     func log() {
-        print("==============================BLOOP==============================")
+        print("============================== LOVE - LOOP - BEGIN ==============================")
         print("Entity Data: ")
         print("-> Number Of Entities Added = \(numberOfEnititesAdded), Number Of Entities Removed = \(numberOfEntitiesRemoved), Entity Count = \(entityCount)\n")
         
@@ -42,7 +42,7 @@ struct LoveDebug {
         for system in systemLoop {
             print("-> \(system.identifier)")
         }
-        print("==============================ELOOP==============================")
+        print("=============================== LOVE - LOOP - END ===============================")
     }
     
     private func getEventCount() -> Int {
