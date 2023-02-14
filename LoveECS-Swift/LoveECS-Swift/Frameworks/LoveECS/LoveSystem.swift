@@ -19,10 +19,10 @@ class LoveSystem: GKComponentSystem<GKComponent> {
     var observableEvents = [String]()
     var identifier: String
     
-    init(world: LoveWorld?, observableEvents: [String], componentClass: AnyClass, identifier: String) {
+    init(world: LoveWorld?, observableEvents: [String], componentClass: AnyClass, identifier: String? = nil) {
         self.world = world
         self.observableEvents = observableEvents
-        self.identifier = identifier
+        self.identifier = identifier ?? "\(componentClass)"
         super.init(componentClass: componentClass)
     }
     
