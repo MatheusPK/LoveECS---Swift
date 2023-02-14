@@ -15,7 +15,6 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         switch event.type {
         case SnakeEnvironment.EVENTS.SNAKE_BODY_HIT:
             direction = .idle
-            speed += 10
         default:
             break
         }

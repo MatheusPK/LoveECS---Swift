@@ -26,7 +26,6 @@ extension SnakeBodyComponent: LoveSystemProtocol {
             body.append(spriteComponent.sprite)
             world?.addEntity(entity)
             world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_SPAWN))
-            break
         default:
             break
         }

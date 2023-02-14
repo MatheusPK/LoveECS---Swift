@@ -14,6 +14,8 @@ class SnakeGameScene: LoveScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
+        scene?.scaleMode = .aspectFit
+        
         let faceTrackingView = loveDependencies[SnakeEnvironment.DEPENDENCIES.FACE_TRACKING_VIEW] as! FaceTrackingView
         
 
@@ -25,14 +27,14 @@ class SnakeGameScene: LoveScene {
         ])
         
         let snakeEntity = LoveEntity(components: [
-            SnakeBodyComponent(nodeSize: CGSize(width: 30, height: 30), bodyOffset: 5, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
-            SnakeMovementComponent(speed: 10, direction: .idle),
+            SnakeBodyComponent(nodeSize: CGSize(width: 20, height: 20), bodyOffset: 5, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
+            SnakeMovementComponent(speed: 5, direction: .idle),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
             SnakeColliderComponent(),
         ])
 
         let fruitEntity = LoveEntity(components: [
-            FruitSpawnerComponent(fruitSize: CGSize(width: 30, height: 30), fruitColor: .systemPink, spawnRate: 1),
+            FruitSpawnerComponent(fruitSize: CGSize(width: 20, height: 20), fruitColor: .systemPink, spawnRate: 1),
         ])
 
         let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT], componentClass: SnakeMovementComponent.self)

@@ -10,6 +10,8 @@ import GameplayKit
 
 class LoveWorld {
     
+    typealias EventType = String
+    
     var scene: LoveScene?
     
     var entities = Set<LoveEntity>()
@@ -20,12 +22,15 @@ class LoveWorld {
     var systemsToAdd  = [LoveSystem]()
     var systemsToRemove  = [LoveSystem]()
     
-    var eventQueue = [String:[LoveEvent]]()
+    var eventQueue = [EventType:[LoveEvent]]()
+    var eventsToAdd = [LoveEvent]()
+    var eventsToRemove = [EventType]()
     
     // MARK: - World Life Cycle
     func update(dt: TimeInterval) {
         manageEntities()
         manageSystems()
+        manageEvents()
         
         clear()
         
@@ -39,6 +44,7 @@ class LoveWorld {
         entitiesToRemove.removeAll()
         systemsToAdd.removeAll()
         systemsToRemove.removeAll()
+        eventsToRemove.removeAll()
     }
 }
 
@@ -105,15 +111,25 @@ extension LoveWorld {
 // MARK: - Events Management
 extension LoveWorld {
     
-    func enqueueEvent(event: LoveEvent) {
-        if eventQueue[event.type] == nil { eventQueue[event.type] = [] }
-        eventQueue[event.type]?.append(event)
+    func manageEvents() {
         
+        for eventToAdd in eventsToAdd {
+            if eventQueue[eventToAdd.type] == nil { eventQueue[eventToAdd.type] = [] }
+            eventQueue[eventToAdd.type]?.append(eventToAdd)
+        }
+        
+        for eventTypeToRemove in eventsToRemove {
+            eventQueue[eventTypeToRemove] = []
+        }
+    }
+    
+    func enqueueEvent(event: LoveEvent) {
+        eventsToAdd.append(event)
     }
 
-    func dequeueEvent(eventType: String) -> [LoveEvent] {
+    func dequeueEvent(eventType: EventType) -> [LoveEvent] {
         let events = eventQueue[eventType] ?? []
-        eventQueue[eventType] = []
+        eventsToRemove.append(eventType)
         return events
     }
 }
