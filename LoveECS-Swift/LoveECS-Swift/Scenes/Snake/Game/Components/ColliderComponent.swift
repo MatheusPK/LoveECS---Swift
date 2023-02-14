@@ -93,6 +93,6 @@ extension ColliderComponent {
 }
 
 protocol ContactNotifiable {
-    func contactDidBegin(with entity: LoveEntity, world: LoveWorld)
-    func contactDidEnd(with entity: LoveEntity, world: LoveWorld)
+    func contactDidBegin(with entity: LoveEntity)
+    func contactDidEnd(with entity: LoveEntity)
 }

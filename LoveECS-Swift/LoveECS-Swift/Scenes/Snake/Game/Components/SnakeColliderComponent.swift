@@ -8,21 +8,31 @@
 import Foundation
 
 class SnakeColliderComponent: LoveComponent, ContactNotifiable {
-    func contactDidBegin(with entity: LoveEntity, world: LoveWorld) {
+    
+    var collisions = [Collision]()
+    
+    func contactDidBegin(with entity: LoveEntity) {
         guard let typeComponent = entity.component(ofType: TypeComponent.self) else { return }
         switch typeComponent.type {
         case .snakeHead:
             break
         case .snakeBody:
-            world.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.SNAKE_BODY_HIT))
+            collisions.append(Collision(type: .snakeBody, entity: entity))
         case .fruit:
-            world.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_HIT))
-            world.removeEntity(entity)
+            collisions.append(Collision(type: .fruit, entity: entity))
         case .wall:
             print("bati na parede")
         }
     }
     
-    func contactDidEnd(with entity: LoveEntity, world: LoveWorld) {}
+    func contactDidEnd(with entity: LoveEntity) {}
 }
+
+extension SnakeColliderComponent {
+    struct Collision {
+        let type: TypeComponent.EntityType
+        let entity: LoveEntity
+    }
+}
+
 

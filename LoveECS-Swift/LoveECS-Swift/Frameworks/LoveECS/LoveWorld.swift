@@ -45,6 +45,7 @@ class LoveWorld {
         systemsToAdd.removeAll()
         systemsToRemove.removeAll()
         eventsToRemove.removeAll()
+        eventsToAdd.removeAll()
     }
 }
 
@@ -129,7 +130,7 @@ extension LoveWorld {
 
     func dequeueEvent(eventType: EventType) -> [LoveEvent] {
         let events = eventQueue[eventType] ?? []
-        eventsToRemove.append(eventType)
+        if !events.isEmpty { eventsToRemove.append(eventType) }
         return events
     }
 }

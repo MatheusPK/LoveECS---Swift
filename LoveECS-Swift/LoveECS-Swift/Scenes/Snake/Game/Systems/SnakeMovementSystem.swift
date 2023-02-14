@@ -15,6 +15,8 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         switch event.type {
         case SnakeEnvironment.EVENTS.SNAKE_BODY_HIT:
             direction = .idle
+        case SnakeEnvironment.EVENTS.FRUIT_HIT:
+            speed += 1
         default:
             break
         }
