@@ -16,14 +16,14 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         case SnakeEnvironment.EVENTS.SNAKE_BODY_HIT:
             direction = .idle
             entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
-            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
+//            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
             break
         case SnakeEnvironment.EVENTS.FRUIT_HIT:
             speed += 1
         case SnakeEnvironment.EVENTS.WALL_HIT:
             direction = .idle
             entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
-            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
+//            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
         case SnakeEnvironment.EVENTS.SNAKE_TITAN:
             guard let snakeColliderComponent = entity?.component(ofType: SnakeColliderComponent.self) else { return }
             snakeColliderComponent.isInvencible = true
@@ -48,7 +48,7 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         let snakeNodeSize = snakeBodyComponent.nodeSize
         let snakeBodyOffset = snakeBodyComponent.bodyOffset
         
-        if snakeMovementComponent.movementTimer.fired(dt, speed: speed) {
+        if snakeMovementComponent.movementTimer.fired(dt, speed: 1/speed) {
             
             snakeBodyComponent.saveLastSnakePosition()
             

@@ -27,8 +27,11 @@ extension FruitSpawnerComponent: LoveSystemProtocol {
             
             while true {
                 let possibleFruitPosition = generateRandomFruitPosition(in: scene)
-                if !scene.nodes(at: possibleFruitPosition).contains(where: {
-                    node in return node.entity?.component(ofType: SnakeMovementComponent.self) != nil
+                if !scene.nodes(at: possibleFruitPosition).contains(where: { node in
+                    return node.entity?.component(ofType: TypeComponent.self)?.type == .snakeHead &&
+                           node.entity?.component(ofType: TypeComponent.self)?.type == .snakeBody &&
+                           node.entity?.component(ofType: TypeComponent.self)?.type ==  .titanItem &&
+                           node.entity?.component(ofType: TypeComponent.self)?.type == .wall
                 }) {
                     if let fruitSprite = fruitEntity.component(ofType: LoveSpriteComponent.self) {
                         fruitSprite.sprite.position = possibleFruitPosition

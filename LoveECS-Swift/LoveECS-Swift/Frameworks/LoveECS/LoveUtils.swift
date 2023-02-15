@@ -9,15 +9,15 @@ import Foundation
 
 class LoveUtils {
     class Timer {
-        var interval: TimeInterval
+        var interval: TimeInterval = .infinity
         var timer: TimeInterval = .zero
         
         init(interval: TimeInterval) {
-            self.interval = 1/interval
+            self.interval = interval
         }
         
         func fired(_ increment: TimeInterval, speed: TimeInterval)-> Bool {
-            interval = 1/speed
+            interval = speed
             if timer >= interval {
                 timer = .zero
                 return true

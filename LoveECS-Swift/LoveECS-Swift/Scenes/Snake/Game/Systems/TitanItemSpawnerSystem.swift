@@ -48,7 +48,7 @@ extension TitanItemSpawnerComponent: LoveSystemProtocol {
     }
     
     func process(world: LoveWorld?, dt: TimeInterval) {
-        if itemSpawnTimer.fired(dt, speed: 1/spawnInterval), shouldSpawn {
+        if shouldSpawn && itemSpawnTimer.fired(dt, speed: spawnInterval) {
             world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.SPAWN_TITAN_ITEM))
         }
     }

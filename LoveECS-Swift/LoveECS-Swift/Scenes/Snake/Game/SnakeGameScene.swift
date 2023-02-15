@@ -39,12 +39,57 @@ class SnakeGameScene: LoveScene {
             TitanItemSpawnerComponent(itemSize: CGSize(width: 20, height: 20), itemColor: .black, spawnInterval: 15)
         ])
 
-        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT, SnakeEnvironment.EVENTS.SNAKE_TITAN, SnakeEnvironment.EVENTS.STOP_INVENCIBILITY], componentClass: SnakeMovementComponent.self)
-        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.CREATE_FRUIT_BODY], componentClass: SnakeBodyComponent.self)
-        let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: FruitSpawnerComponent.self)
-        let wallSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: WallSpawnerComponent.self)
-        let titanSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SPAWN_TITAN_ITEM, SnakeEnvironment.EVENTS.END_TITAN_EVENT], componentClass: TitanItemSpawnerComponent.self)
-        let snakeColliderSystem = LoveSystem(world: world, observableEvents: [], componentClass: SnakeColliderComponent.self)
+        let snakeMovementSystem = LoveSystem(
+            world: world,
+            observableEvents: [
+                SnakeEnvironment.EVENTS.SNAKE_BODY_HIT,
+                SnakeEnvironment.EVENTS.FRUIT_HIT,
+                SnakeEnvironment.EVENTS.WALL_HIT,
+                SnakeEnvironment.EVENTS.SNAKE_TITAN,
+                SnakeEnvironment.EVENTS.STOP_INVENCIBILITY
+            ],
+            componentClass: SnakeMovementComponent.self
+        )
+        
+        let snakeBodySystem = LoveSystem(
+            world: world,
+            observableEvents: [
+                SnakeEnvironment.EVENTS.FRUIT_HIT,
+                SnakeEnvironment.EVENTS.CREATE_FRUIT_BODY
+            ],
+            componentClass: SnakeBodyComponent.self
+        )
+        
+        let fruitSpawnerSystem = LoveSystem(
+            world: world,
+            observableEvents: [
+                SnakeEnvironment.EVENTS.FRUIT_SPAWN
+            ],
+            componentClass: FruitSpawnerComponent.self
+        )
+        
+        let wallSpawnerSystem = LoveSystem(
+            world: world,
+            observableEvents: [
+                SnakeEnvironment.EVENTS.FRUIT_SPAWN
+            ],
+            componentClass: WallSpawnerComponent.self
+        )
+        
+        let titanSpawnerSystem = LoveSystem(
+            world: world,
+            observableEvents: [
+                SnakeEnvironment.EVENTS.SPAWN_TITAN_ITEM,
+                SnakeEnvironment.EVENTS.END_TITAN_EVENT
+            ],
+            componentClass: TitanItemSpawnerComponent.self
+        )
+        
+        let snakeColliderSystem = LoveSystem(
+            world: world,
+            observableEvents: [],
+            componentClass: SnakeColliderComponent.self
+        )
 
         world.addEntity(backgroundEntity)
         world.addEntity(snakeEntity)
@@ -59,6 +104,7 @@ class SnakeGameScene: LoveScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        if lastUpdateTime == 0 { lastUpdateTime = currentTime }
         let delta: TimeInterval = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
         world.update(dt: delta)

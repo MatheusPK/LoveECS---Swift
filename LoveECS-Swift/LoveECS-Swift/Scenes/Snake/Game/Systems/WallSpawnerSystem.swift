@@ -21,7 +21,7 @@ extension WallSpawnerComponent: LoveSystemProtocol {
             
             let wallEntity = LoveEntity(components: [
                 LoveSpriteComponent(color: wallBodyComponent.wallColor, size: wallBodyComponent.wallSize, layer: .items),
-                ColliderComponent(type: .wall, collidibleTypes: [.all], contactTestTypes: [.all]),
+                ColliderComponent(type: .wall, collidibleTypes: [.none], contactTestTypes: [.all]),
                 TypeComponent(type: .wall)
             ])
             
@@ -30,6 +30,7 @@ extension WallSpawnerComponent: LoveSystemProtocol {
                 if !scene.nodes(at: possibleWallPosition).contains(where: { node in
                     return node.entity?.component(ofType: TypeComponent.self)?.type == .snakeHead &&
                            node.entity?.component(ofType: TypeComponent.self)?.type == .snakeBody &&
+                           node.entity?.component(ofType: TypeComponent.self)?.type == .fruit &&
                            node.entity?.component(ofType: TypeComponent.self)?.type == .wall
                 }) {
                     if let fruitSprite = wallEntity.component(ofType: LoveSpriteComponent.self) {
