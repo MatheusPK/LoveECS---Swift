@@ -27,28 +27,31 @@ class SnakeGameScene: LoveScene {
         ])
         
         let snakeEntity = LoveEntity(components: [
-            SnakeBodyComponent(nodeSize: CGSize(width: 30, height: 30), bodyOffset: 1, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
+            SnakeBodyComponent(nodeSize: CGSize(width: 20, height: 20), bodyOffset: 1, initialBodySize: 3, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
             SnakeMovementComponent(speed: 5, direction: .idle),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
             SnakeColliderComponent(),
         ])
 
-        let fruitEntity = LoveEntity(components: [
-            FruitSpawnerComponent(fruitSize: CGSize(width: 30, height: 30), fruitColor: .systemPink),
+        let EventEntity = LoveEntity(components: [
+            FruitSpawnerComponent(fruitSize: CGSize(width: 20, height: 20), fruitColor: .systemPink),
+            WallSpawnerComponent(wallSize: CGSize(width: 20, height: 20), wallColor: .gray, spawnInterval: 2)
         ])
 
         let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT], componentClass: SnakeMovementComponent.self)
-        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeBodyComponent.self)
+        let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.CREATE_FRUIT_BODY], componentClass: SnakeBodyComponent.self)
         let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: FruitSpawnerComponent.self)
+        let wallSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: WallSpawnerComponent.self)
         let snakeColliderSystem = LoveSystem(world: world, observableEvents: [], componentClass: SnakeColliderComponent.self)
 
         world.addEntity(backgroundEntity)
         world.addEntity(snakeEntity)
-        world.addEntity(fruitEntity)
+        world.addEntity(EventEntity)
 
         world.addSystem(snakeMovementSystem)
         world.addSystem(snakeBodySystem)
         world.addSystem(fruitSpawnerSystem)
+        world.addSystem(wallSpawnerSystem)
         world.addSystem(snakeColliderSystem)
     }
     

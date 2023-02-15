@@ -24,7 +24,7 @@ extension FruitSpawnerComponent: LoveSystemProtocol {
                 ColliderComponent(type: .fruit, collidibleTypes: [.none], contactTestTypes: [.snakeHead]),
                 TypeComponent(type: .fruit)
             ])
-
+            
             while true {
                 let possibleFruitPosition = generateRandomFruitPosition(in: scene)
                 if !scene.nodes(at: possibleFruitPosition).contains(where: {
@@ -36,17 +36,17 @@ extension FruitSpawnerComponent: LoveSystemProtocol {
                     break
                 }
             }
-
+            
             world.addEntity(fruitEntity)
         }
     }
-
-func process(world: LoveWorld?, dt: TimeInterval) {}
-
-func generateRandomFruitPosition(in scene: LoveScene?) -> CGPoint {
-    guard let scene = scene else { return .zero }
-    let x = CGFloat.random(in: (0 + fruitSize.width/2)...(scene.size.width - fruitSize.width/2))
-    let y = CGFloat.random(in: (0 + fruitSize.height/2)...(scene.size.height - fruitSize.height/2))
-    return CGPoint(x: x, y: y)
-}
+    
+    func process(world: LoveWorld?, dt: TimeInterval) {}
+    
+    func generateRandomFruitPosition(in scene: LoveScene?) -> CGPoint {
+        guard let scene = scene else { return .zero }
+        let x = CGFloat.random(in: (0 + fruitSize.width/2)...(scene.size.width - fruitSize.width/2))
+        let y = CGFloat.random(in: (0 + fruitSize.height/2)...(scene.size.height - fruitSize.height/2))
+        return CGPoint(x: x, y: y)
+    }
 }
