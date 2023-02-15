@@ -100,7 +100,7 @@ extension LoveWorld {
         
         for systemToRemove in systemsToRemove {
             systems.removeAll(where: {
-                $0.componentClass == systemToRemove.componentClass
+                $0.identifier == systemToRemove.identifier
             })
             removeComponents(in: systemToRemove)
         }

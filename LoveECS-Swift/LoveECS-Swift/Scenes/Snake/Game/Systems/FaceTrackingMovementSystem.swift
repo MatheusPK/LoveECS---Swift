@@ -30,8 +30,8 @@ extension FaceTrackingMovementComponent: LoveSystemProtocol, ARSessionDelegate {
         }
         
         if let snakeMovementComponent = entity?.component(ofType: SnakeMovementComponent.self) {
-            if let lastDirection = directions.last {
-                snakeMovementComponent.direction = lastDirection
+            if let direction = directions.last, direction != snakeMovementComponent.direction, direction != snakeMovementComponent.direction.reverse() {
+                snakeMovementComponent.direction = direction
             }
         }
     }

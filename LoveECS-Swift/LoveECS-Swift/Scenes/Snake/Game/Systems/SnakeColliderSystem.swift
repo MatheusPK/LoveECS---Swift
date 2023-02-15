@@ -23,6 +23,7 @@ extension SnakeColliderComponent: LoveSystemProtocol {
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_HIT))
                 world?.removeEntity(collision.entity)
             case .wall:
+                world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.WALL_HIT))
                 break
             }
         }

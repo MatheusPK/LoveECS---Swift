@@ -14,7 +14,7 @@ class SnakeGameScene: LoveScene {
     override func didMove(to view: SKView) {
         super.didMove(to: view)
         
-        scene?.scaleMode = .aspectFit
+        scaleMode = .aspectFit
         
         let faceTrackingView = loveDependencies[SnakeEnvironment.DEPENDENCIES.FACE_TRACKING_VIEW] as! FaceTrackingView
         
@@ -22,12 +22,12 @@ class SnakeGameScene: LoveScene {
         let backgroundEntity = LoveEntity(components: [
             LoveSpriteComponent(color: .clear, size: size, position: CGPoint(x: size.width/2, y: size.height/2), layer: .background),
             TextureComponent(texture: SKTexture(imageNamed: "fundo")),
-            ColliderComponent(type: .wall, collidibleTypes: [.all], contactTestTypes: [.all], physicsBody: SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: size.width/2, y: size.height/2), size: CGSize(width: size.width - 20, height: size.height - 20)))),
+            ColliderComponent(type: .wall, collidibleTypes: [.all], contactTestTypes: [.all], physicsBody: SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: -size.width/2, y: -size.height/2), size: CGSize(width: size.width, height: size.height)))),
             TypeComponent(type: .wall)
         ])
         
         let snakeEntity = LoveEntity(components: [
-            SnakeBodyComponent(nodeSize: CGSize(width: 20, height: 20), bodyOffset: 5, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
+            SnakeBodyComponent(nodeSize: CGSize(width: 20, height: 20), bodyOffset: 1, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
             SnakeMovementComponent(speed: 5, direction: .idle),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
             SnakeColliderComponent(),
@@ -37,7 +37,7 @@ class SnakeGameScene: LoveScene {
             FruitSpawnerComponent(fruitSize: CGSize(width: 20, height: 20), fruitColor: .systemPink),
         ])
 
-        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeMovementComponent.self)
+        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT], componentClass: SnakeMovementComponent.self)
         let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT], componentClass: SnakeBodyComponent.self)
         let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: FruitSpawnerComponent.self)
         let snakeColliderSystem = LoveSystem(world: world, observableEvents: [], componentClass: SnakeColliderComponent.self)

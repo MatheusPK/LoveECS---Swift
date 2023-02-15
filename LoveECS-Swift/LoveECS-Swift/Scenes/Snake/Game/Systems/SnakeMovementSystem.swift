@@ -15,8 +15,12 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         switch event.type {
         case SnakeEnvironment.EVENTS.SNAKE_BODY_HIT:
             direction = .idle
+            entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
         case SnakeEnvironment.EVENTS.FRUIT_HIT:
             speed += 1
+        case SnakeEnvironment.EVENTS.WALL_HIT:
+            direction = .idle
+            entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
         default:
             break
         }
@@ -32,6 +36,8 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         let snakeBodyOffset = snakeBodyComponent.bodyOffset
         
         if snakeMovementComponent.movementTimer.fired(dt, speed: speed) {
+            
+            snakeBodyComponent.saveLastSnakePosition()
             
             var movement = CGPoint(x: 0, y: 0)
             
@@ -49,10 +55,6 @@ extension SnakeMovementComponent: LoveSystemProtocol {
             }
 
             movement = getMovementOffset(movement: movement, currentPosition: snakeHeadPosition, bounds: world?.scene?.size ?? .zero, nodeSize: snakeNodeSize)
-            if hasCollidedWithSnakeBody(world: world, newPosition: snakeHead.position + movement) {
-                direction = .idle
-                return
-            }
             
             //             movimento titan
             //            let newPosition = snakeHeadPosition + movement
@@ -95,17 +97,6 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         
         return moveOffset
         
-    }
-    
-    private func hasCollidedWithSnakeBody(world: LoveWorld?, newPosition: CGPoint) -> Bool {
-        if let nodesAtNewPosition = world?.scene?.nodes(at: newPosition) {
-            for node in nodesAtNewPosition {
-                if let entity = node.entity, entity.component(ofType: TypeComponent.self)?.type == .snakeBody {
-                    return true
-                }
-            }
-        }
-        return false
     }
     
 }

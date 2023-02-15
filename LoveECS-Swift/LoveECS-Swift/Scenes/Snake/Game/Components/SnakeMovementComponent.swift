@@ -11,16 +11,17 @@ class SnakeMovementComponent: LoveComponent {
     var speed: Double
     var direction: SnakeDirection {
         didSet {
-            lastDirection = oldValue
+            if lastDirection != oldValue {
+                lastDirection = oldValue
+            }
         }
     }
-    var lastDirection: SnakeDirection
+    var lastDirection: SnakeDirection = .idle
     var movementTimer: LoveUtils.Timer
     
     init(speed: Double = 10.0, direction: SnakeDirection = .idle) {
         self.speed = speed
         self.direction = direction
-        self.lastDirection = direction
         self.movementTimer = LoveUtils.Timer(interval: 1/speed)
         super.init()
     }
@@ -37,5 +38,20 @@ extension SnakeMovementComponent {
         case right
         case down
         case idle
+        
+        func reverse() -> SnakeDirection {
+            switch self {
+            case .up:
+                return .down
+            case .left:
+                return .right
+            case .right:
+                return .left
+            case .down:
+                return .up
+            case .idle:
+                return .idle
+            }
+        }
     }
 }
