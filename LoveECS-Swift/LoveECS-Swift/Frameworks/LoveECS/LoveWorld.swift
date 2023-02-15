@@ -20,7 +20,7 @@ class LoveWorld {
     
     var systems = [LoveSystem]()
     var systemsToAdd  = [LoveSystem]()
-    var systemsToRemove  = [LoveSystem]()
+    var systemsToRemove  = [String]()
     
     var eventQueue = [EventType:[LoveEvent]]()
     var eventsToAdd = [LoveEvent]()
@@ -75,8 +75,8 @@ extension LoveWorld {
         systemsToAdd.append(system)
     }
       
-     func removeSystem(_ system: LoveSystem) {
-        systemsToRemove.append(system)
+     func removeSystem(by systemIdentifier: String) {
+        systemsToRemove.append(systemIdentifier)
     }
     
     private func addComponents(in system: LoveSystem) {
@@ -98,11 +98,13 @@ extension LoveWorld {
             systemToAdd.onAdd()
         }
         
-        for systemToRemove in systemsToRemove {
-            systems.removeAll(where: {
-                $0.identifier == systemToRemove.identifier
-            })
-            removeComponents(in: systemToRemove)
+        for systemToRemoveIdentifier in systemsToRemove {
+            if let systemToRemoveIndex = systems.firstIndex(where: {
+                $0.identifier == systemToRemoveIdentifier
+            }) {
+                let systemToRemove = systems.remove(at: systemToRemoveIndex)
+                removeComponents(in: systemToRemove)
+            }
         }
     }
 }

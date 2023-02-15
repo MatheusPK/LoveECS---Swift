@@ -27,14 +27,14 @@ class SnakeGameScene: LoveScene {
         ])
         
         let snakeEntity = LoveEntity(components: [
-            SnakeBodyComponent(nodeSize: CGSize(width: 20, height: 20), bodyOffset: 1, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
+            SnakeBodyComponent(nodeSize: CGSize(width: 30, height: 30), bodyOffset: 1, initialBodySize: 0, initialPosition: CGPoint(x: size.width/2, y: size.height/2)),
             SnakeMovementComponent(speed: 5, direction: .idle),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
             SnakeColliderComponent(),
         ])
 
         let fruitEntity = LoveEntity(components: [
-            FruitSpawnerComponent(fruitSize: CGSize(width: 20, height: 20), fruitColor: .systemPink),
+            FruitSpawnerComponent(fruitSize: CGSize(width: 30, height: 30), fruitColor: .systemPink),
         ])
 
         let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT], componentClass: SnakeMovementComponent.self)

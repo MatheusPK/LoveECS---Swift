@@ -21,7 +21,7 @@ class SnakeColliderComponent: LoveComponent, ContactNotifiable {
         case .fruit:
             collisions.append(Collision(type: .fruit, entity: entity))
         case .wall:
-            print("bati na parede")
+            collisions.append(Collision(type: .wall, entity: entity))
         }
     }
     

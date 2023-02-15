@@ -53,8 +53,6 @@ extension SnakeMovementComponent: LoveSystemProtocol {
             case .idle:
                 return
             }
-
-            movement = getMovementOffset(movement: movement, currentPosition: snakeHeadPosition, bounds: world?.scene?.size ?? .zero, nodeSize: snakeNodeSize)
             
             //             movimento titan
             //            let newPosition = snakeHeadPosition + movement
@@ -80,23 +78,4 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         }
         
     }
-    
-    private func getMovementOffset(movement: CGPoint, currentPosition: CGPoint, bounds: CGSize, nodeSize: CGSize) -> CGPoint {
-        let newPosition = currentPosition + movement
-        var moveOffset = movement
-        
-        if newPosition.x > bounds.width {
-            moveOffset.x = bounds.width - currentPosition.x - nodeSize.width/2
-        } else if newPosition.x < 0 {
-            moveOffset.x = 0 - currentPosition.x + nodeSize.width/2
-        } else if newPosition.y > bounds.height {
-            moveOffset.y = bounds.height - currentPosition.y - nodeSize.height/2
-        } else if newPosition.y < 0 {
-            moveOffset.y = 0 - currentPosition.y + nodeSize.height/2
-        }
-        
-        return moveOffset
-        
-    }
-    
 }
