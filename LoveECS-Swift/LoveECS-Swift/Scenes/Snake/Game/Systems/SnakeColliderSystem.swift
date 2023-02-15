@@ -18,11 +18,13 @@ extension SnakeColliderComponent: LoveSystemProtocol {
             case .snakeHead:
                 break
             case .snakeBody:
+                if isInvencible { break }
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.SNAKE_BODY_HIT))
             case .fruit:
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_HIT))
                 world?.removeEntity(collision.entity)
             case .wall:
+                if isInvencible { break }
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.WALL_HIT))
                 break
             case .titanItem:

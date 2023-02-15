@@ -36,10 +36,10 @@ class SnakeGameScene: LoveScene {
         let EventEntity = LoveEntity(components: [
             FruitSpawnerComponent(fruitSize: CGSize(width: 20, height: 20), fruitColor: .systemPink),
             WallSpawnerComponent(wallSize: CGSize(width: 20, height: 20), wallColor: .gray, spawnInterval: 2),
-            TitanItemSpawnerComponent(itemSize: CGSize(width: 20, height: 20), itemColor: .black, spawnInterval: 5)
+            TitanItemSpawnerComponent(itemSize: CGSize(width: 20, height: 20), itemColor: .black, spawnInterval: 15)
         ])
 
-        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT, SnakeEnvironment.EVENTS.SNAKE_TITAN], componentClass: SnakeMovementComponent.self)
+        let snakeMovementSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT, SnakeEnvironment.EVENTS.SNAKE_TITAN, SnakeEnvironment.EVENTS.STOP_INVENCIBILITY], componentClass: SnakeMovementComponent.self)
         let snakeBodySystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.CREATE_FRUIT_BODY], componentClass: SnakeBodyComponent.self)
         let fruitSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: FruitSpawnerComponent.self)
         let wallSpawnerSystem = LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], componentClass: WallSpawnerComponent.self)
