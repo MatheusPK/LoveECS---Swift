@@ -80,7 +80,7 @@ extension LoveWorld {
     }
     
     private func addComponents(in system: LoveSystem) {
-        for entity in entitiesToAdd {
+        for entity in entities {
             system.addComponent(foundIn: entity)
         }
     }
@@ -143,6 +143,12 @@ extension LoveWorld {
         
         for eventTypeToRemove in eventsToRemove {
             eventQueue[eventTypeToRemove] = []
+        }
+    }
+    
+    func scheduleEvent(event: LoveEvent, time: TimeInterval) {
+        Timer.scheduledTimer(withTimeInterval: time, repeats: false) {_ in
+            self.enqueueEvent(event: event)
         }
     }
     

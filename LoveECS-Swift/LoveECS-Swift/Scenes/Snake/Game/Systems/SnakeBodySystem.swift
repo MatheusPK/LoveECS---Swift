@@ -36,7 +36,7 @@ extension SnakeBodyComponent: LoveSystemProtocol {
     func process(world: LoveWorld?, dt: TimeInterval) {}
     
     private func createBodyEntity(in position: CGPoint) -> LoveEntity {
-        let sprite = SKSpriteNode(color: .clear, size: nodeSize)
+        let sprite = SKSpriteNode(color: .systemPink, size: nodeSize)
         sprite.position = position
         let entity = LoveEntity(components: [
             LoveSpriteComponent(sprite: sprite, layer: .player),

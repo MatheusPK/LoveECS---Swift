@@ -19,5 +19,8 @@ struct SnakeEnvironment {
         static let SNAKE_BODY_HIT    = "SNAKE_BODY_HIT"
         static let WALL_SPAWN        = "WALL_SPAWN"
         static let CREATE_FRUIT_BODY = "CREATE_FRUIT_BODY"
+        static let SNAKE_TITAN       = "SNAKE_TITAN"
+        static let SPAWN_TITAN_ITEM  = "SPAWN_TITAN_ITEM"
+        static let END_TITAN_EVENT   = "END_TITAN_EVENT"
     }
 }

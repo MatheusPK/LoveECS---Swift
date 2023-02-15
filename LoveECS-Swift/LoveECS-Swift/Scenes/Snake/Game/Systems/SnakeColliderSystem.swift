@@ -19,14 +19,15 @@ extension SnakeColliderComponent: LoveSystemProtocol {
                 break
             case .snakeBody:
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.SNAKE_BODY_HIT))
-                world?.removeSystem(by: "\(SnakeMovementComponent.self)")
             case .fruit:
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_HIT))
                 world?.removeEntity(collision.entity)
             case .wall:
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.WALL_HIT))
-                world?.removeSystem(by: "\(SnakeMovementComponent.self)")
                 break
+            case .titanItem:
+                world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.SNAKE_TITAN))
+                world?.removeEntity(collision.entity)
             }
         }
         collisions.removeAll()

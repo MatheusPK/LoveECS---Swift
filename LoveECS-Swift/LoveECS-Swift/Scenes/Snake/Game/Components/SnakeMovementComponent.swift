@@ -19,7 +19,7 @@ class SnakeMovementComponent: LoveComponent {
     var lastDirection: SnakeDirection = .idle
     var movementTimer: LoveUtils.Timer
     
-    init(speed: Double = 10.0, direction: SnakeDirection = .idle) {
+    init(speed: Double = 10.0, direction: SnakeDirection = .right) {
         self.speed = speed
         self.direction = direction
         self.movementTimer = LoveUtils.Timer(interval: 1/speed)

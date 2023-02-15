@@ -16,11 +16,19 @@ extension SnakeMovementComponent: LoveSystemProtocol {
         case SnakeEnvironment.EVENTS.SNAKE_BODY_HIT:
             direction = .idle
             entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
+            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
+            break
         case SnakeEnvironment.EVENTS.FRUIT_HIT:
             speed += 1
         case SnakeEnvironment.EVENTS.WALL_HIT:
             direction = .idle
             entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
+            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
+        case SnakeEnvironment.EVENTS.SNAKE_TITAN:
+            entity?.addComponent(SnakeTitanMovementComponent())
+            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
+            world?.addSystem(LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.END_TITAN_EVENT], componentClass: SnakeTitanMovementComponent.self))
+            world?.scheduleEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.END_TITAN_EVENT), time: 3)
         default:
             break
         }
@@ -53,19 +61,7 @@ extension SnakeMovementComponent: LoveSystemProtocol {
             case .idle:
                 return
             }
-            
-            //             movimento titan
-            //            let newPosition = snakeHeadPosition + movement
-            //            snakeHead.run(.move(to: newPosition, duration: 1/speed))
-            //            for i in 0..<snakeBodyComponent.body.count {
-            //                let node = snakeBodyComponent.body[i]
-            //                let auxPosition = node.position
-            //                node.run(.move(to: snakeHeadPosition, duration: 1/self.speed))
-            //                snakeHeadPosition = auxPosition
-            //            }
-            
-            
-            //             movimento classico
+
             snakeHead.position += movement
             for i in 0..<snakeBodyComponent.body.count {
                 let node = snakeBodyComponent.body[i]

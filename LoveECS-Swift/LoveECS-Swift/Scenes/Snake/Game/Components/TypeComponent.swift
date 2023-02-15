@@ -15,6 +15,7 @@ class TypeComponent: LoveComponent {
         case snakeBody
         case fruit
         case wall
+        case titanItem
     }
     
     init(type: EntityType) {
