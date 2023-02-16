@@ -38,6 +38,11 @@ class LoveSpriteComponent: LoveComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = LoveSpriteComponent(sprite: sprite.copy() as! SKSpriteNode, layer: GameLayer(rawValue: sprite.zPosition) ?? .background)
+        return copy
+    }
+    
     override func didAddToEntity() {
         sprite.entity = entity
     }

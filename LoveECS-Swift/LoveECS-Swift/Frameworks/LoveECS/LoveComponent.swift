@@ -8,4 +8,8 @@
 import Foundation
 import GameplayKit
 
-class LoveComponent: GKComponent {}
+class LoveComponent: GKComponent {
+    override func copy(with zone: NSZone? = nil) -> Any {
+        return LoveComponent()
+    }
+}

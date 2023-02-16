@@ -9,7 +9,6 @@ import Foundation
 
 class SnakeColliderComponent: LoveComponent, ContactNotifiable {
     
-    var isInvencible: Bool = false
     var collisions = [Collision]()
     
     func contactDidBegin(with entity: LoveEntity) {

@@ -31,12 +31,38 @@ class SnakeGameScene: LoveScene {
             SnakeMovementComponent(speed: 5, direction: .right),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
             SnakeColliderComponent(),
+            InvencibleComponent(isInvencible: false, invencibleTo: [.wall, .snakeBody])
         ])
 
-        let EventEntity = LoveEntity(components: [
-            FruitSpawnerComponent(fruitSize: CGSize(width: 20, height: 20), fruitColor: .systemPink),
-            WallSpawnerComponent(wallSize: CGSize(width: 20, height: 20), wallColor: .gray, spawnInterval: 2),
-            TitanItemSpawnerComponent(itemSize: CGSize(width: 20, height: 20), itemColor: .black, spawnInterval: 15)
+        let eventEntity = LoveEntity(components: [
+            WallSpawnerComponent(spawnRate: 3),
+            TitanItemSpawnerComponent(eventDuration: 5, spawnInterval: 10)
+        ])
+        
+        let fruitSpawnerEntity = LoveEntity(components: [
+            ItemSpawnerComponent(spawnEvents: [SnakeEnvironment.EVENTS.FRUIT_SPAWN], notOverlaps: TypeComponent.EntityType.allCases, itemComponents: [
+                LoveSpriteComponent(color: .systemPink, size: CGSize(width: 20, height: 20), layer: .items),
+                ColliderComponent(type: .fruit, collidibleTypes: [.none], contactTestTypes: [.snakeHead]),
+                TypeComponent(type: .fruit)
+            ], onAdd: {
+                self.world.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.FRUIT_SPAWN))
+            })
+        ])
+        
+        let wallSpawnerEnity = LoveEntity(components: [
+            ItemSpawnerComponent(spawnEvents: [SnakeEnvironment.EVENTS.WALL_SPAWN], notOverlaps: TypeComponent.EntityType.allCases, itemComponents: [
+                LoveSpriteComponent(color: .gray, size: CGSize(width: 20, height: 20), layer: .items),
+                ColliderComponent(type: .wall, collidibleTypes: [.none], contactTestTypes: [.snakeHead]),
+                TypeComponent(type: .wall)
+            ])
+        ])
+        
+        let titanEventSpawnerEntity = LoveEntity(components: [
+            ItemSpawnerComponent(spawnEvents: [SnakeEnvironment.EVENTS.SPAWN_TITAN_ITEM], notOverlaps: TypeComponent.EntityType.allCases, itemComponents: [
+                LoveSpriteComponent(color: .green, size: CGSize(width: 20, height: 20), layer: .items),
+                ColliderComponent(type: .titanItem, collidibleTypes: [.none], contactTestTypes: [.snakeHead]),
+                TypeComponent(type: .titanItem)
+            ])
         ])
 
         let snakeMovementSystem = LoveSystem(
@@ -46,7 +72,6 @@ class SnakeGameScene: LoveScene {
                 SnakeEnvironment.EVENTS.FRUIT_HIT,
                 SnakeEnvironment.EVENTS.WALL_HIT,
                 SnakeEnvironment.EVENTS.SNAKE_TITAN,
-                SnakeEnvironment.EVENTS.STOP_INVENCIBILITY
             ],
             componentClass: SnakeMovementComponent.self
         )
@@ -60,29 +85,40 @@ class SnakeGameScene: LoveScene {
             componentClass: SnakeBodyComponent.self
         )
         
-        let fruitSpawnerSystem = LoveSystem(
+        let invencibleSystem = LoveSystem(
             world: world,
             observableEvents: [
-                SnakeEnvironment.EVENTS.FRUIT_SPAWN
+                SnakeEnvironment.EVENTS.START_INVENCIBILITY,
+                SnakeEnvironment.EVENTS.STOP_INVENCIBILITY
             ],
-            componentClass: FruitSpawnerComponent.self
+            componentClass: InvencibleComponent.self
         )
         
         let wallSpawnerSystem = LoveSystem(
             world: world,
             observableEvents: [
-                SnakeEnvironment.EVENTS.FRUIT_SPAWN
+                SnakeEnvironment.EVENTS.FRUIT_HIT
             ],
             componentClass: WallSpawnerComponent.self
         )
         
-        let titanSpawnerSystem = LoveSystem(
+        let titanEventSpawnerSystem = LoveSystem(
             world: world,
             observableEvents: [
-                SnakeEnvironment.EVENTS.SPAWN_TITAN_ITEM,
-                SnakeEnvironment.EVENTS.END_TITAN_EVENT
+                SnakeEnvironment.EVENTS.END_TITAN_EVENT,
+                SnakeEnvironment.EVENTS.SNAKE_TITAN
             ],
             componentClass: TitanItemSpawnerComponent.self
+        )
+        
+        let itemSpawnerSystem = LoveSystem(
+            world: world,
+            observableEvents: [
+                SnakeEnvironment.EVENTS.FRUIT_SPAWN,
+                SnakeEnvironment.EVENTS.WALL_SPAWN,
+                SnakeEnvironment.EVENTS.SPAWN_TITAN_ITEM
+            ],
+            componentClass: ItemSpawnerComponent.self
         )
         
         let snakeColliderSystem = LoveSystem(
@@ -93,13 +129,17 @@ class SnakeGameScene: LoveScene {
 
         world.addEntity(backgroundEntity)
         world.addEntity(snakeEntity)
-        world.addEntity(EventEntity)
+        world.addEntity(eventEntity)
+        world.addEntity(titanEventSpawnerEntity)
+        world.addEntity(wallSpawnerEnity)
+        world.addEntity(fruitSpawnerEntity)
 
         world.addSystem(snakeMovementSystem)
         world.addSystem(snakeBodySystem)
-        world.addSystem(fruitSpawnerSystem)
+        world.addSystem(titanEventSpawnerSystem)
         world.addSystem(wallSpawnerSystem)
-        world.addSystem(titanSpawnerSystem)
+        world.addSystem(itemSpawnerSystem)
+        world.addSystem(invencibleSystem)
         world.addSystem(snakeColliderSystem)
     }
     

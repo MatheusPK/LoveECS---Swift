@@ -10,7 +10,7 @@ import Foundation
 class TypeComponent: LoveComponent {
     let type: EntityType
     
-    enum EntityType {
+    enum EntityType: CaseIterable {
         case snakeHead
         case snakeBody
         case fruit
@@ -25,5 +25,10 @@ class TypeComponent: LoveComponent {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = TypeComponent(type: type)
+        return copy
     }
 }

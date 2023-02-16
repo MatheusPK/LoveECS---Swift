@@ -9,15 +9,11 @@ import Foundation
 import UIKit
 
 class WallSpawnerComponent: LoveComponent {
-    let wallSize: CGSize
-    let wallColor: UIColor
-    let spawnInterval: Int
-    var wallSpawnCount: Int = -1
+    let spawnRate: Int
+    var wallSpawnCount: Int = 0
     
-    init(wallSize: CGSize, wallColor: UIColor, spawnInterval: Int) {
-        self.wallSize = wallSize
-        self.wallColor = wallColor
-        self.spawnInterval = spawnInterval
+    init(spawnRate: Int) {
+        self.spawnRate = spawnRate
         super.init()
     }
     

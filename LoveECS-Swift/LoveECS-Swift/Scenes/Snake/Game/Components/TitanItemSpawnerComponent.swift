@@ -9,15 +9,13 @@ import Foundation
 import UIKit
 
 class TitanItemSpawnerComponent: LoveComponent {
-    let itemSize: CGSize
-    let itemColor: UIColor
+    let eventDuration: TimeInterval
     let spawnInterval: TimeInterval
     let itemSpawnTimer: LoveUtils.Timer
     var shouldSpawn: Bool
     
-    init(itemSize: CGSize, itemColor: UIColor, spawnInterval: TimeInterval) {
-        self.itemSize = itemSize
-        self.itemColor = itemColor
+    init(eventDuration: TimeInterval, spawnInterval: TimeInterval) {
+        self.eventDuration = eventDuration
         self.spawnInterval = spawnInterval
         self.itemSpawnTimer = LoveUtils.Timer(interval: spawnInterval)
         self.shouldSpawn = true

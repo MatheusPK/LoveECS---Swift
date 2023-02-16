@@ -26,6 +26,11 @@ class ColliderComponent: LoveComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = ColliderComponent(type: type, collidibleTypes: collidibleTypes, contactTestTypes: contactTestTypes, physicsBody: physicsBody)
+        return copy
+    }
+    
     override func didAddToEntity() {
         setupBitMask()
     }
