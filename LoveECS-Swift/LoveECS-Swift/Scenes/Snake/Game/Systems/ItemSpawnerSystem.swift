@@ -36,15 +36,19 @@ extension ItemSpawnerComponent: LoveSystemProtocol {
         
         while true {
             guard let spawnPosition = generateRandomItemPosition(for: itemEntity, scene: scene) else { return }
-            let nodes = scene.nodes(at: spawnPosition)
-            let hasEntityInSpawnPosition = nodes.contains(where: { node in
-                guard let entityType = node.entity?.component(ofType: TypeComponent.self)?.type else { return false }
-                return (self.notOverlaps.firstIndex(of: entityType) == nil)
-            })
-            if !hasEntityInSpawnPosition {
-                itemEntity.component(ofType: LoveSpriteComponent.self)?.sprite.position = spawnPosition
-                break
+            guard let sprite = itemEntity.component(ofType: LoveSpriteComponent.self)?.sprite else { return }
+            sprite.position = spawnPosition
+            var isValidPositon: Bool = true
+            
+            for entity in world.entities {
+                if let otherSprite = entity.component(ofType: LoveSpriteComponent.self)?.sprite {
+                    if sprite.intersects(otherSprite), sprite.zPosition == otherSprite.zPosition {
+                        isValidPositon = false
+                    }
+                }
             }
+            
+            if isValidPositon { break }
         }
         
         world.addEntity(itemEntity)
