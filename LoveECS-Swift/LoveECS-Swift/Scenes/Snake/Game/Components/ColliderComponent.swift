@@ -76,6 +76,7 @@ extension ColliderComponent {
         case snakeHead
         case snakeBody
         case fruit
+        case brick
         case titanItem
         case eventItem
         case wall
@@ -84,14 +85,15 @@ extension ColliderComponent {
         
         func getBitMask() -> UInt32 {
             switch self {
-                case .snakeHead: return 0x1 << 0
-                case .snakeBody: return 0x1 << 1
-                case .fruit: return 0x1 << 2
-                case .titanItem: return 0x1 << 3
-                case .eventItem: return 0x1 << 4
-                case .wall: return 0x1 << 5
-                case .all: return UInt32.max
-                case .none: return UInt32.zero
+            case .snakeHead: return 0x1 << 0
+            case .snakeBody: return 0x1 << 1
+            case .fruit: return 0x1 << 2
+            case .titanItem: return 0x1 << 3
+            case .brick:    return 0x1 << 4
+            case .eventItem: return 0x1 << 5
+            case .wall: return 0x1 << 6
+            case .all: return UInt32.max
+            case .none: return UInt32.zero
             }
         }
         

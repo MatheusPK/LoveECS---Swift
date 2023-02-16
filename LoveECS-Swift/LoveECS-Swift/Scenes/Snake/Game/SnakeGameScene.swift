@@ -31,11 +31,11 @@ class SnakeGameScene: LoveScene {
             SnakeMovementComponent(speed: 5, direction: .right),
             FaceTrackingMovementComponent(faceTrackingView: faceTrackingView),
             SnakeColliderComponent(),
-            InvencibleComponent(isInvencible: false, invencibleTo: [.wall, .snakeBody])
+            InvencibleComponent(isInvencible: false, invencibleTo: [.brick, .snakeBody])
         ])
 
         let eventEntity = LoveEntity(components: [
-            WallSpawnerComponent(spawnRate: 3),
+            BrickSpawnerComponent(spawnRate: 3),
             TitanItemSpawnerComponent(eventDuration: 5, spawnInterval: 10)
         ])
         
@@ -49,11 +49,11 @@ class SnakeGameScene: LoveScene {
             })
         ])
         
-        let wallSpawnerEnity = LoveEntity(components: [
+        let brickSpawnerEnity = LoveEntity(components: [
             ItemSpawnerComponent(spawnEvents: [SnakeEnvironment.EVENTS.WALL_SPAWN], notOverlaps: TypeComponent.EntityType.allCases, itemComponents: [
                 LoveSpriteComponent(color: .gray, size: CGSize(width: 20, height: 20), layer: .items),
-                ColliderComponent(type: .wall, collidibleTypes: [.none], contactTestTypes: [.snakeHead]),
-                TypeComponent(type: .wall)
+                ColliderComponent(type: .brick, collidibleTypes: [.none], contactTestTypes: [.snakeHead]),
+                TypeComponent(type: .brick)
             ])
         ])
         
@@ -71,6 +71,7 @@ class SnakeGameScene: LoveScene {
                 SnakeEnvironment.EVENTS.SNAKE_BODY_HIT,
                 SnakeEnvironment.EVENTS.FRUIT_HIT,
                 SnakeEnvironment.EVENTS.WALL_HIT,
+                SnakeEnvironment.EVENTS.BRICK_HIT,
                 SnakeEnvironment.EVENTS.SNAKE_TITAN,
             ],
             componentClass: SnakeMovementComponent.self
@@ -94,12 +95,12 @@ class SnakeGameScene: LoveScene {
             componentClass: InvencibleComponent.self
         )
         
-        let wallSpawnerSystem = LoveSystem(
+        let brickSpawnerSystem = LoveSystem(
             world: world,
             observableEvents: [
                 SnakeEnvironment.EVENTS.FRUIT_HIT
             ],
-            componentClass: WallSpawnerComponent.self
+            componentClass: BrickSpawnerComponent.self
         )
         
         let titanEventSpawnerSystem = LoveSystem(
@@ -131,13 +132,13 @@ class SnakeGameScene: LoveScene {
         world.addEntity(snakeEntity)
         world.addEntity(eventEntity)
         world.addEntity(titanEventSpawnerEntity)
-        world.addEntity(wallSpawnerEnity)
+        world.addEntity(brickSpawnerEnity)
         world.addEntity(fruitSpawnerEntity)
 
         world.addSystem(snakeMovementSystem)
         world.addSystem(snakeBodySystem)
         world.addSystem(titanEventSpawnerSystem)
-        world.addSystem(wallSpawnerSystem)
+        world.addSystem(brickSpawnerSystem)
         world.addSystem(itemSpawnerSystem)
         world.addSystem(invencibleSystem)
         world.addSystem(snakeColliderSystem)

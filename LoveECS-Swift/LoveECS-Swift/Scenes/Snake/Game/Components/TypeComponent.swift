@@ -14,6 +14,7 @@ class TypeComponent: LoveComponent {
         case snakeHead
         case snakeBody
         case fruit
+        case brick
         case wall
         case titanItem
     }

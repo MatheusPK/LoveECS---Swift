@@ -16,7 +16,7 @@
 		09440A08299A7C7300849966 /* TypeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A07299A7C7300849966 /* TypeComponent.swift */; };
 		09440A14299BD3DC00849966 /* SnakeColliderSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A13299BD3DC00849966 /* SnakeColliderSystem.swift */; };
 		09440A16299BD84100849966 /* LoveDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A15299BD84100849966 /* LoveDebug.swift */; };
-		09440A1C299D2D6300849966 /* WallSpawnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A1B299D2D6300849966 /* WallSpawnerComponent.swift */; };
+		09440A1C299D2D6300849966 /* BrickSpawnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A1B299D2D6300849966 /* BrickSpawnerComponent.swift */; };
 		09440A1E299D2DB700849966 /* WallSpawnerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A1D299D2DB700849966 /* WallSpawnerSystem.swift */; };
 		09440A20299D38C500849966 /* SnakeTitanMovementComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A1F299D38C500849966 /* SnakeTitanMovementComponent.swift */; };
 		09440A22299D390800849966 /* SnakeTitanMovementSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09440A21299D390800849966 /* SnakeTitanMovementSystem.swift */; };
@@ -65,7 +65,7 @@
 		09440A07299A7C7300849966 /* TypeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeComponent.swift; sourceTree = "<group>"; };
 		09440A13299BD3DC00849966 /* SnakeColliderSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeColliderSystem.swift; sourceTree = "<group>"; };
 		09440A15299BD84100849966 /* LoveDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveDebug.swift; sourceTree = "<group>"; };
-		09440A1B299D2D6300849966 /* WallSpawnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallSpawnerComponent.swift; sourceTree = "<group>"; };
+		09440A1B299D2D6300849966 /* BrickSpawnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickSpawnerComponent.swift; sourceTree = "<group>"; };
 		09440A1D299D2DB700849966 /* WallSpawnerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallSpawnerSystem.swift; sourceTree = "<group>"; };
 		09440A1F299D38C500849966 /* SnakeTitanMovementComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeTitanMovementComponent.swift; sourceTree = "<group>"; };
 		09440A21299D390800849966 /* SnakeTitanMovementSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeTitanMovementSystem.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 				0953271B29953AAE00ECA5D3 /* SnakeColliderComponent.swift */,
 				0953271F299639EB00ECA5D3 /* TextureComponent.swift */,
 				09440A07299A7C7300849966 /* TypeComponent.swift */,
-				09440A1B299D2D6300849966 /* WallSpawnerComponent.swift */,
+				09440A1B299D2D6300849966 /* BrickSpawnerComponent.swift */,
 				09440A1F299D38C500849966 /* SnakeTitanMovementComponent.swift */,
 				09440A23299D39CD00849966 /* TitanItemSpawnerComponent.swift */,
 				0940996F299D64F900ED9E90 /* ItemSpawnerComponent.swift */,
@@ -421,7 +421,7 @@
 				095326F02994260100ECA5D3 /* ColliderComponent.swift in Sources */,
 				0957B6D92991A9D500E80244 /* BaseSKView.swift in Sources */,
 				0953271C29953AAE00ECA5D3 /* SnakeColliderComponent.swift in Sources */,
-				09440A1C299D2D6300849966 /* WallSpawnerComponent.swift in Sources */,
+				09440A1C299D2D6300849966 /* BrickSpawnerComponent.swift in Sources */,
 				0957B6F92992E44E00E80244 /* SnakeBodyComponent.swift in Sources */,
 				0957B70129930F0C00E80244 /* FaceTrackingMovementComponent.swift in Sources */,
 				09440A042999A2DE00849966 /* CGPoint+Extension.swift in Sources */,

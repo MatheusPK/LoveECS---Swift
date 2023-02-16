@@ -18,8 +18,14 @@ extension SnakeTitanMovementComponent: LoveSystemProtocol {
             snakeMovementComponent.speed += 1
         case SnakeEnvironment.EVENTS.END_TITAN_EVENT:
             world?.removeSystem(by: "\(SnakeTitanMovementComponent.self)")
-            world?.addSystem(LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT, SnakeEnvironment.EVENTS.SNAKE_TITAN, SnakeEnvironment.EVENTS.STOP_INVENCIBILITY], componentClass: SnakeMovementComponent.self))
+            world?.addSystem(LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.SNAKE_BODY_HIT, SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.WALL_HIT, SnakeEnvironment.EVENTS.SNAKE_TITAN, SnakeEnvironment.EVENTS.STOP_INVENCIBILITY, SnakeEnvironment.EVENTS.BRICK_HIT], componentClass: SnakeMovementComponent.self))
             world?.scheduleEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.STOP_INVENCIBILITY), time: 3)
+            
+        case SnakeEnvironment.EVENTS.WALL_HIT:
+            guard let snakeMovementComponent = entity?.component(ofType: SnakeMovementComponent.self) else { return }
+            guard let snakeBodyComponent = entity?.component(ofType: SnakeBodyComponent.self) else { return }
+            snakeMovementComponent.direction = .idle
+            snakeBodyComponent.setSnakePositionToLastSavedPosition()
         default:
             break
         }

@@ -29,6 +29,8 @@ extension SnakeColliderComponent: LoveSystemProtocol {
             case .titanItem:
                 world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.SNAKE_TITAN))
                 world?.removeEntity(collision.entity)
+            case .brick:
+                world?.enqueueEvent(event: LoveEvent(type: SnakeEnvironment.EVENTS.BRICK_HIT))
             }
         }
         collisions.removeAll()

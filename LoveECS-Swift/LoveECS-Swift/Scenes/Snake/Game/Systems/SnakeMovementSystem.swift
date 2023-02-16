@@ -24,10 +24,17 @@ extension SnakeMovementComponent: LoveSystemProtocol {
             direction = .idle
             entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
 //            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
+        case SnakeEnvironment.EVENTS.BRICK_HIT:
+            direction = .idle
+            entity?.component(ofType: SnakeBodyComponent.self)?.setSnakePositionToLastSavedPosition()
+//            world?.removeSystem(by: "\(SnakeMovementComponent.self)")
         case SnakeEnvironment.EVENTS.SNAKE_TITAN:
             entity?.addComponent(SnakeTitanMovementComponent())
             world?.removeSystem(by: "\(SnakeMovementComponent.self)")
-            world?.addSystem(LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.END_TITAN_EVENT], componentClass: SnakeTitanMovementComponent.self))
+            world?.addSystem(LoveSystem(world: world, observableEvents: [SnakeEnvironment.EVENTS.FRUIT_HIT, SnakeEnvironment.EVENTS.END_TITAN_EVENT, SnakeEnvironment.EVENTS.WALL_HIT], componentClass: SnakeTitanMovementComponent.self))
+        case SnakeEnvironment.EVENTS.STOP_INVENCIBILITY:
+            guard let invencibleComponent = entity?.component(ofType: InvencibleComponent.self) else { return }
+            invencibleComponent.isInvencible = false
         default:
             break
         }

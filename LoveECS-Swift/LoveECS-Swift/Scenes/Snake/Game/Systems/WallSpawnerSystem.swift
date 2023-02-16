@@ -8,22 +8,22 @@
 import Foundation
 import SpriteKit
 
-extension WallSpawnerComponent: LoveSystemProtocol {
+extension BrickSpawnerComponent: LoveSystemProtocol {
     func onAdd(world: LoveWorld?) {}
     
     func handleEvent(world: LoveWorld?, event: LoveEvent, dt: TimeInterval) {
         switch event.type {
         case SnakeEnvironment.EVENTS.FRUIT_HIT:
-            wallSpawnCount += 1
+            brickSpawnCount += 1
         default:
             break
         }
     }
     
     func process(world: LoveWorld?, dt: TimeInterval) {
-        if wallSpawnCount != 0, wallSpawnCount % spawnRate == 0 {
+        if brickSpawnCount != 0, brickSpawnCount % spawnRate == 0 {
             world?.enqueueEvent(event: LoveEvent.init(type: SnakeEnvironment.EVENTS.WALL_SPAWN))
-            wallSpawnCount = 0
+            brickSpawnCount = 0
         }
     }
 }

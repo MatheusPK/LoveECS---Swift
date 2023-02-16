@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class WallSpawnerComponent: LoveComponent {
+class BrickSpawnerComponent: LoveComponent {
     let spawnRate: Int
-    var wallSpawnCount: Int = 0
+    var brickSpawnCount: Int = 0
     
     init(spawnRate: Int) {
         self.spawnRate = spawnRate
